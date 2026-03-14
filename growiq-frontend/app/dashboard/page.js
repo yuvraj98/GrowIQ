@@ -148,8 +148,8 @@ export default function DashboardPage() {
                     </h3>
                     <div className="grid grid-cols-4 md:grid-cols-8 gap-3">
                         {Array.from({ length: 16 }, (_, i) => {
-                            const isPast = i < 12;
-                            const isCurrent = i === 12; // sprint 13 is active
+                            const isPast = i < 16;
+                            const isCurrent = false; // All sprints complete
                             return (
                                 <div
                                     key={i}

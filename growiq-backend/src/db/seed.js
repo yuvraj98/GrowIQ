@@ -271,4 +271,39 @@ async function seedSEO(agencyId) {
     }
 }
 
-module.exports = { seedClients, seedCampaigns, seedNotifications, seedInvoices, seedSEO };
+async function seedSocial(agencyId) {
+    try {
+        const clientRes = await query('SELECT id, business_name FROM clients WHERE agency_id = $1', [agencyId]);
+        if (clientRes.rows.length === 0) return;
+
+        const platforms = ['instagram', 'linkedin', 'facebook', 'twitter'];
+        const mockPosts = [
+            { content: '5 Tips to increase your ROAS this month! #DigitalMarketing #ROI', platform: 'linkedin' },
+            { content: 'New Case Study: How we helped TechNova scale by 300%. Link in bio!', platform: 'instagram' },
+            { content: 'Why SEO matters in 2026. A thread...', platform: 'twitter' },
+            { content: 'We are hiring! Join our growing team of performance marketers.', platform: 'facebook' },
+        ];
+
+        for (const client of clientRes.rows) {
+            const existing = await query('SELECT id FROM social_posts WHERE client_id = $1 LIMIT 1', [client.id]);
+            if (existing.rows.length > 0) continue;
+
+            for (let i = 0; i < mockPosts.length; i++) {
+                const post = mockPosts[i];
+                const status = i < 2 ? 'published' : 'scheduled';
+                const publishedAt = status === 'published' ? 'CURRENT_TIMESTAMP' : 'NULL';
+                const scheduledAt = status === 'scheduled' ? `CURRENT_TIMESTAMP + INTERVAL '${i} days'` : 'NULL';
+                
+                await query(`
+                    INSERT INTO social_posts (client_id, platform, content, status, published_at, scheduled_at, reach, engagement, likes)
+                    VALUES ($1, $2, $3, $4, ${publishedAt}, ${scheduledAt}, $5, $6, $7)
+                `, [client.id, post.platform, post.content, status, status === 'published' ? 1200 : 0, status === 'published' ? 85 : 0, status === 'published' ? 60 : 0]);
+            }
+        }
+        logger.info(`✅ Seeded social posts for agency ${agencyId}`);
+    } catch (error) {
+        logger.error('Social seeding error:', error);
+    }
+}
+
+module.exports = { seedClients, seedCampaigns, seedNotifications, seedInvoices, seedSEO, seedSocial };

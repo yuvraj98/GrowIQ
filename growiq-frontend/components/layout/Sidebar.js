@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
     Zap, BarChart3, Users, Brain, FileText, CreditCard,
-    Search, Settings, LogOut
+    Search, Settings, LogOut, Share2, Smartphone
 } from 'lucide-react';
 import useAuthStore from '@/store/authStore';
 import { getInitials } from '@/lib/utils';
@@ -17,6 +17,8 @@ const NAV_ITEMS = [
     { icon: FileText, label: 'Reports', href: '/dashboard/reports' },
     { icon: CreditCard, label: 'Invoicing', href: '/dashboard/invoicing' },
     { icon: Search, label: 'SEO Tracker', href: '/dashboard/seo' },
+    { icon: Share2, label: 'Social Hub', href: '/dashboard/social' },
+    { icon: Smartphone, label: 'Client Portal', href: '/portal' },
     { icon: Settings, label: 'Settings', href: '/dashboard/settings' },
 ];
 

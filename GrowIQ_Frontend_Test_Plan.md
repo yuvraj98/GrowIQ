@@ -191,7 +191,45 @@ Test organic metric monitoring and keyword tracking.
   * Click the `Trash` icon on any keyword row.
   * *Expected:* The keyword is instantly removed from tracking.
 
+## 📱 12. Social Content Scheduler (Sprint 14)
+Test multi-platform content planning and engagement tracking.
+
+* [ ] **Generate Social Seed Data**
+  * Send a POST request to `http://localhost:5000/api/v1/dev/seed` to generate mock published and scheduled posts.
+* [ ] **View Social Hub**
+  * Go to `Social Hub` in the sidebar.
+  * *Expected:* High-level cards will show "Total Reach" and "Scheduled Posts" counts.
+* [ ] **Schedule a New Post**
+  * Click `+ Schedule Content`.
+  * Select a client, a platform (Instagram/LinkedIn/etc.), and write a caption.
+  * *Expected:* The post appears in the grid as "Scheduled" with the correct platform icon.
+* [ ] **Analyze Engagement**
+  * Find a "Published" post card.
+  * *Expected:* Real-time (mocked) stats for Likes, Reach, and Engagement are displayed on the card.
+* [ ] **One-Click Publishing**
+  * Find a "Scheduled" post. Click `Publish Now`.
+  * *Expected:* The status changes to "Published" (green) and engagement metrics are instantly generated.
+
+## 📱 13. Client Portal Mobile View (Sprint 15)
+Test the mobile-first client experience and data transparency.
+
+* [ ] **View Portal Preview**
+  * Click `Client Portal` in the sidebar or go to `http://localhost:3000/portal`.
+  * *Expected:* The UI should transform into a sleek, mobile-app style interface (best viewed by resizing your browser or using Chrome DevTools mobile view).
+* [ ] **KPI Tiles**
+  * Look at the simplified cards for Spend and ROAS.
+  * *Expected:* They should match the live metrics in your main dashboard for that specific client.
+* [ ] **Action Required Card**
+  * Check the "Action Required" section.
+  * *Expected:* It should display any "Pending" invoices for that client with a one-click payment call-to-action.
+* [ ] **Report Archive**
+  * Find the "Recent Reports" list.
+  * *Expected:* Scrolling through shows generated reports with a premium download icon.
+* [ ] **Ranking Snapshot**
+  * Check the "Top Keywords" section.
+  * *Expected:* It should show the client's best-performing SEO terms with position indicators.
+
 ---
 
-### Ready for the next phase?
-Once you are done verifying the UI, we are ready to kick off **Sprint 14: Social Content Scheduler**!
+### Ready for the final step?
+Once you are done verifying the UI, we are ready to kick off **Sprint 16: Security Audit & Production Readiness**!

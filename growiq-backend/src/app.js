@@ -26,11 +26,13 @@ const dashboardRoutes = require('./routes/dashboard.routes');
 const integrationRoutes = require('./routes/integration.routes');
 const notificationRoutes = require('./routes/notification.routes');
 const teamRoutes = require('./routes/team.routes');
+const portalRoutes = require('./routes/portal.routes');
 
 const app = express();
 
 // ─── Security Middleware ────────────────────────────────────
 app.use(helmet());
+app.use(apiLimiter);
 app.use(cors({
     origin: env.FRONTEND_URL,
     credentials: true,
@@ -107,10 +109,11 @@ app.use('/api/v1/dashboard', authenticate, dashboardRoutes);
 app.use('/api/v1/integrations', authenticate, integrationRoutes);
 app.use('/api/v1/notifications', authenticate, notificationRoutes);
 app.use('/api/v1/team', authenticate, teamRoutes);
+app.use('/api/v1/portal', portalRoutes);
 
 // ─── Dev-Only: Seed Data & Jobs ────────────────────────────────────
 if (env.NODE_ENV === 'development') {
-    const { seedClients, seedCampaigns, seedNotifications, seedInvoices, seedSEO } = require('./db/seed');
+    const { seedClients, seedCampaigns, seedNotifications, seedInvoices, seedSEO, seedSocial } = require('./db/seed');
     app.post('/api/v1/dev/seed', authenticate, async (req, res) => {
         try {
             await seedClients(req.user.agencyId);
@@ -118,7 +121,8 @@ if (env.NODE_ENV === 'development') {
             await seedNotifications(req.user.agencyId, req.user.id);
             await seedInvoices(req.user.agencyId);
             await seedSEO(req.user.agencyId);
-            res.json({ success: true, message: 'Seed data created (clients, campaigns, notifications, invoices, seo)' });
+            await seedSocial(req.user.agencyId);
+            res.json({ success: true, message: 'Seed data created (clients, campaigns, notifications, invoices, seo, social)' });
         } catch (err) {
             res.status(500).json({ success: false, error: err.message });
         }

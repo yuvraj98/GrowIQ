@@ -1,0 +1,56 @@
+# 🚀 GrowIQ - Digital Marketing Business Platform
+
+GrowIQ is a comprehensive, all-in-one platform designed for digital marketing agencies to manage clients, automate ad campaign monitoring, generate AI-driven insights, and handle professional billing—all in one high-premium dashboard.
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js 14, Tailwind CSS, Lucide Icons, Zustand (State Management)
+- **Backend:** Node.js, Express.js
+- **Database:** PostgreSQL (with daily automated health checks)
+- **Engine:** Custom Node-Cron background workers for AI Analysis & Automated Reporting
+- **Styling:** Premium Vanilla CSS & Modern Glassmorphism UI
+
+## ✨ Completed Features (Sprints 1-13)
+
+### 🧠 AI Intelligence Suite
+- **Nightly Engine:** Automated background scanning of client campaign performance.
+- **Actionable Insights:** AI-generated alerts for ROAS drops, scaling opportunities, and performance forecasts.
+- **Reporting Engine:** Weekly automated PDF-ready performance summaries generated every Monday at 3:00 AM.
+
+### 💳 Financial & Operations
+- **Invoicing Hub:** Automated GST (18%) calculations, pending/paid tracking, and manual invoice generation.
+- **Team Management:** Role-based access control (Owner, Manager, Finance, Viewer) and invitation system.
+- **Client Workspace:** Deep-dive client profiles with campaign history and integration heatmaps.
+
+### 🔍 Search & Social
+- **SEO Tracker:** Daily keyword ranking monitor with historical change tracking, search volume, and difficulty metrics.
+- **Ad Campaigns:** Centralized view of Meta & Google Ads performance (Dev-mode sync active).
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+- Node.js (v18+)
+- PostgreSQL (Local or Cloud)
+
+### 2. Backend Setup
+```bash
+cd growiq-backend
+npm install
+# Configure your .env (DATABASE_URL, JWT_SECRET, etc.)
+npm start
+```
+
+### 3. Frontend Setup
+```bash
+cd growiq-frontend
+npm install
+npm run dev
+```
+
+## 📈 Roadmap
+- **Sprint 14:** Social Content Scheduler
+- **Sprint 15:** Client Portal Mobile App
+- **Sprint 16:** Final Security Audit & Production Launch
+
+---
+*Built with ❤️ for Digital Agencies.*

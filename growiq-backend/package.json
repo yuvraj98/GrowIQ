@@ -1,0 +1,48 @@
+{
+  "name": "growiq-backend",
+  "version": "1.0.0",
+  "description": "GrowIQ — All-in-One Digital Marketing Business Platform API",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "lint": "eslint src/",
+    "format": "prettier --write src/",
+    "test": "echo \"Tests coming in Sprint 15\" && exit 0",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "growiq",
+    "digital-marketing",
+    "saas",
+    "api"
+  ],
+  "author": "GrowIQ",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "axios": "^1.13.6",
+    "bcryptjs": "^3.0.3",
+    "bull": "^4.16.5",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^4.22.1",
+    "express-rate-limit": "^8.3.1",
+    "helmet": "^8.1.0",
+    "ioredis": "^5.10.0",
+    "joi": "^18.0.2",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^8.0.2",
+    "pg": "^8.20.0",
+    "uuid": "^13.0.0",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "eslint": "^10.0.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.4",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.8.1"
+  }
+}

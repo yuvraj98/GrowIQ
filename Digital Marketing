@@ -1,0 +1,951 @@
+# 🗓️ GrowIQ — Complete 16-Sprint Plan (Free Development)
+
+> **Total Cost During Development: ₹0**
+> **Duration:** 4 Months (16 Weeks) | **Sprint Length:** 1 Week
+> **Methodology:** Agile Scrum | **Team:** Developer(s) + You (Founder)
+
+---
+
+## 🧰 Free Dev Toolkit (Used Across All Sprints)
+
+| Tool | Purpose | Free Tier |
+|------|---------|-----------|
+| **VS Code** | Code editor | Free forever |
+| **Node.js 20 LTS** | Runtime | Free forever |
+| **Docker Desktop** | PostgreSQL + Redis locally | Free (personal) |
+| **Git + GitHub** | Version control + CI/CD | Free (unlimited private repos, 2K CI mins/mo) |
+| **Vercel** | Frontend hosting | Free Hobby plan (1 project, .vercel.app domain) |
+| **Postman** | API testing | Free (25 requests history) |
+| **Figma** | UI/UX design | Free (3 projects) |
+| **Notion** | Project management | Free personal plan |
+| **Chrome DevTools** | Debugging + Lighthouse | Free |
+
+---
+
+## 📊 Sprint Cost Tracker
+
+| Sprint | Week | Paid Services Used | Cost |
+|--------|------|--------------------|------|
+| Sprint 1-16 | Week 1-16 | **None** | **₹0** |
+| **TOTAL** | **4 Months** | | **₹0** |
+
+---
+
+# 📅 MONTH 1 — Foundation & Core Infrastructure
+
+---
+
+## Sprint 1 | Project Setup & Architecture | Week 1
+
+### 🎯 Goals
+- Set up complete development environment
+- Create both repositories with proper structure
+- Get everything running locally
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| Database | **Docker PostgreSQL 16** (local) |
+| Cache | **Docker Redis 7** (local) |
+| Frontend hosting | **localhost:3000** (dev server) |
+| Backend hosting | **localhost:5000** (dev server) |
+| Version control | **GitHub Free** |
+| CI/CD | **GitHub Actions Free** (2,000 mins/mo) |
+
+### 📋 Tasks
+
+**Backend Setup:**
+- [ ] Initialize Node.js project: `npm init -y`
+- [ ] Install Express.js, dotenv, cors, helmet
+- [ ] Create folder structure as per LLD:
+  ```
+  growiq-backend/
+  ├── src/
+  │   ├── config/         (db.js, redis.js, env.js)
+  │   ├── middleware/      (auth.js, rateLimiter.js, errorHandler.js)
+  │   ├── routes/          (auth, client, campaign, etc.)
+  │   ├── controllers/     (all controllers)
+  │   ├── services/        (all services)
+  │   ├── integrations/    (meta, google, razorpay — mock stubs)
+  │   ├── jobs/            (cron job files)
+  │   ├── utils/           (logger, pdfGenerator, s3Uploader)
+  │   ├── app.js
+  │   └── server.js
+  ├── tests/
+  ├── .env.example
+  ├── docker-compose.yml
+  └── package.json
+  ```
+- [ ] Create `docker-compose.yml` for PostgreSQL + Redis
+- [ ] Create `.env.example` with all variables
+- [ ] Set up ESLint + Prettier + Husky pre-commit hooks
+- [ ] Create basic health check endpoint: `GET /health`
+- [ ] Write README with local setup instructions
+
+**Frontend Setup:**
+- [ ] Initialize Next.js 14: `npx -y create-next-app@latest ./`
+- [ ] Configure App Router structure:
+  ```
+  growiq-frontend/
+  ├── app/
+  │   ├── (auth)/login/page.js
+  │   ├── (auth)/register/page.js
+  │   ├── dashboard/page.js
+  │   └── layout.js
+  ├── components/
+  │   ├── ui/
+  │   ├── charts/
+  │   └── layout/
+  ├── lib/           (api.js, auth.js, utils.js)
+  ├── hooks/
+  ├── store/
+  └── styles/
+  ```
+- [ ] Install Tailwind CSS and configure
+- [ ] Set up Zustand for state management
+- [ ] Configure Axios instance with interceptors
+- [ ] Set up Vercel project (connect GitHub for auto-deploy)
+
+**Infrastructure:**
+- [ ] `docker compose up -d` → PostgreSQL + Redis running
+- [ ] Test DB connection from Express
+- [ ] Test Redis connection
+- [ ] GitHub repo with branch protection rules
+- [ ] GitHub Actions: basic lint + test on PR
+
+### ✅ Deliverables
+- [x] Both projects running locally
+- [x] Docker PostgreSQL + Redis up
+- [x] GitHub repo with CI/CD
+- [x] Auto-deploy to Vercel (frontend)
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+## Sprint 2 | Authentication & User Management | Week 2
+
+### 🎯 Goals
+- Complete JWT auth system
+- Role-based access control
+- Login/Register pages
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| JWT tokens | **jsonwebtoken** npm package (free, open source) |
+| Password hashing | **bcrypt** npm package (free) |
+| Email (password reset) | **SendGrid Free** (100 emails/day) OR **Ethereal Email** (fake SMTP for dev) |
+| Validation | **Joi** npm package (free) |
+
+> [!TIP]
+> Use **Ethereal Email** ([ethereal.email](https://ethereal.email)) during development — it catches all emails and shows them in a web inbox. No real emails sent. Completely free. Switch to SendGrid later.
+
+### 📋 Tasks
+
+**Backend:**
+- [ ] Create `users` and `agencies` tables (PostgreSQL migration)
+- [ ] `POST /auth/register` — agency registration
+- [ ] `POST /auth/login` — returns JWT access token (15 min) + refresh token (7 days)
+- [ ] `POST /auth/refresh` — token rotation
+- [ ] JWT verify middleware for protected routes
+- [ ] Role enum: `owner`, `manager`, `finance`, `viewer`
+- [ ] Password hashing with bcrypt (salt rounds = 12)
+- [ ] Password reset flow (Ethereal Email for dev)
+- [ ] Input validation with Joi schemas
+
+**Frontend:**
+- [ ] Login page with form validation
+- [ ] Register page with plan selection
+- [ ] Protected route wrapper component
+- [ ] Zustand auth store with persist middleware (localStorage)
+- [ ] JWT token management (auto-refresh, interceptors)
+- [ ] Redirect to login on 401
+
+### ✅ Deliverables
+- [x] Working login/register
+- [x] JWT auth on all protected routes
+- [x] Role-based route protection
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+## Sprint 3 | Database Schema & Client Module | Week 3
+
+### 🎯 Goals
+- Implement complete DB schema
+- Client CRUD operations
+- Client list page
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| Database | **Docker PostgreSQL** (already running) |
+| ORM/Queries | **pg** npm package (raw queries) or **Prisma** (free) |
+| Test data | **Faker.js** for generating mock clients |
+| DB Management | **pgAdmin 4** (free) or **DBeaver Community** (free) |
+
+### 📋 Tasks
+
+**Backend:**
+- [ ] Run all PostgreSQL migrations (all tables from schema chapter):
+  - `agencies`, `users`, `clients`, `client_integrations`
+  - `campaigns`, `campaign_metrics`, `ai_insights`
+  - `invoices`, `payments`, `reports`
+  - `seo_keywords`, `seo_rankings`, `social_posts`
+  - `notifications`, `audit_logs`
+- [ ] Seed database with 3 mock clients (using Faker.js)
+- [ ] `GET /clients` — list with pagination, search, filter
+- [ ] `POST /clients` — create new client
+- [ ] `GET /clients/:id` — get client details
+- [ ] `PUT /clients/:id` — update client
+- [ ] `DELETE /clients/:id` — archive (soft delete)
+- [ ] Client health score calculation function
+- [ ] Pagination middleware (page, limit, total count)
+- [ ] Unit tests for client service (using Jest — free)
+
+**Frontend:**
+- [ ] Client list page with search, filter, sort
+- [ ] Client detail page with tabs (Overview, Campaigns, Invoices, Reports)
+- [ ] Add client form (business type, plan, GST, contact info)
+- [ ] Client status badges (active/paused/churned)
+
+### ✅ Deliverables
+- [x] Full client CRUD working
+- [x] All DB tables created
+- [x] Client list and detail pages
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+## Sprint 4 | Main Dashboard & UI System | Week 4
+
+### 🎯 Goals
+- Build design system / component library
+- Main agency dashboard
+- Responsive layout
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| Styling | **Tailwind CSS** (free, open source) |
+| Icons | **Lucide React** or **Heroicons** (free) |
+| Charts | **Recharts** (free) |
+| Fonts | **Google Fonts** (Inter, free) |
+| Design reference | **Figma Free** (3 projects) |
+
+### 📋 Tasks
+
+**Component Library:**
+- [ ] Button (primary, secondary, outline, danger, ghost)
+- [ ] Card (with header, body, footer variants)
+- [ ] Modal (with overlay, transitions)
+- [ ] Table (sortable, pagination)
+- [ ] Badge (status colors)
+- [ ] Input, Select, Textarea
+- [ ] Loading skeletons for async data
+- [ ] Error boundary component
+
+**Dashboard Layout:**
+- [ ] Sidebar navigation with active state
+- [ ] Topbar with client switcher dropdown
+- [ ] Page wrapper with breadcrumbs
+- [ ] Mobile responsive (hamburger menu)
+- [ ] Dark/Light mode toggle (Tailwind dark mode)
+
+**KPI Dashboard:**
+- [ ] KPI metric cards: Revenue, Clients, Campaigns, Avg ROAS
+- [ ] Agency health score widget (0-100 gauge)
+- [ ] Notification bell with dropdown
+- [ ] Quick action buttons
+- [ ] **Mock data** for all KPIs (hardcoded JSON)
+
+### ✅ Deliverables
+- [x] Complete UI component library
+- [x] Dashboard rendering with mock data
+- [x] Mobile responsive layout
+- [x] Dark/Light mode working
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+# 📅 MONTH 2 — Integrations & Campaign Tracker
+
+---
+
+## Sprint 5 | Meta Ads Integration | Week 5
+
+### 🎯 Goals
+- Meta OAuth flow
+- Pull campaign data
+- Store in DB
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| Meta API | **Meta Developer Test Account** (free sandbox with mock ad data) |
+| OAuth testing | **Meta App in Development Mode** (free, no review needed for sandbox) |
+| HTTP Client | **axios** (free) |
+
+> [!NOTE]
+> **Meta Test Account Strategy:** Create a Meta Developer account → Create an App in "Development Mode" → Use the **Test Ad Account** they provide. You get realistic campaign data without spending a rupee on ads.
+>
+> If you can't get sandbox access easily, create a **mock** `metaAds.js` that returns realistic sample data. Swap for real API later.
+
+### 📋 Tasks
+
+**Backend:**
+- [ ] `metaAds.js` integration module
+- [ ] OAuth 2.0 flow: `POST /clients/:id/connect/meta`
+- [ ] Store OAuth token encrypted in `client_integrations` table
+- [ ] Fetch campaigns, ad sets, ads from Meta API (or mock)
+- [ ] Fetch daily metrics: spend, reach, impressions, clicks, conversions
+- [ ] Normalize Meta response to canonical `campaign_metrics` schema
+- [ ] Upsert into `campaign_metrics` table
+- [ ] Handle rate limits with exponential backoff
+- [ ] Token refresh logic
+
+**Frontend:**
+- [ ] "Connect Meta Ads" button on client detail page
+- [ ] OAuth redirect flow
+- [ ] Campaign list showing Meta campaigns
+- [ ] Connection status indicator
+
+**Mock Strategy (if sandbox unavailable):**
+```javascript
+// integrations/metaAds.js
+const USE_MOCK = process.env.USE_MOCK_APIS === 'true';
+
+async function fetchMetaCampaigns(token, adAccountId) {
+  if (USE_MOCK) {
+    return require('../mocks/metaCampaigns.json');
+  }
+  // Real API call...
+}
+```
+
+### ✅ Deliverables
+- [x] Meta Ads connected (or mocked) and syncing
+- [x] Campaign data visible in dashboard
+- [x] OAuth flow working
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+## Sprint 6 | Google Ads + GA4 Integration | Week 6
+
+### 🎯 Goals
+- Google Ads API connection
+- GA4 data pull
+- Unified campaign view
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| Google Ads API | **Google Ads Test Account** (free sandbox) |
+| GA4 | **GA4 Demo Account** (Google provides `UA-54516992-1` / demo property, free) |
+| Google Search Console | **Any verified site** (free) |
+| OAuth | **Google Cloud Free** (OAuth is always free, no billing required for auth) |
+
+> [!TIP]
+> Google provides a **free Demo Account** for GA4 with real e-commerce data. Use it to build and test your GA4 integration without needing a client's real account.
+> 
+> Link: [GA4 Demo Account](https://support.google.com/analytics/answer/6367342)
+
+### 📋 Tasks
+
+**Backend:**
+- [ ] `googleAds.js` — fetch campaigns, ad groups, keywords, metrics
+- [ ] `ga4.js` — fetch sessions, bounce rate, goals, revenue
+- [ ] OAuth flow: `POST /clients/:id/connect/google`
+- [ ] Google Search Console API integration for SEO data
+- [ ] Normalize Google data to canonical schema
+- [ ] Upsert into same `campaign_metrics` table
+
+**Frontend:**
+- [ ] "Connect Google Ads" button
+- [ ] "Connect GA4" button
+- [ ] Campaign Tracker page — combined Meta + Google table
+- [ ] Platform filter tabs: All / Meta / Google
+- [ ] Date range picker: 7D / 30D / 90D / Custom
+- [ ] Campaign performance bar charts (Recharts)
+- [ ] ROAS color coding: 🔴 <2.5x, 🟡 2.5-4x, 🟢 >4x
+
+**Mock Strategy:** Same as Sprint 5 — `USE_MOCK_APIS=true` returns sample Google data.
+
+### ✅ Deliverables
+- [x] Google Ads + GA4 syncing (or mocked)
+- [x] Unified campaign tracker page
+- [x] Cross-platform performance view
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+## Sprint 7 | Automated Sync Jobs & Cron System | Week 7
+
+### 🎯 Goals
+- Bull job queue setup
+- Daily sync automation
+- Error handling & retry
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| Job Queue | **Bull** npm package (free) + **Docker Redis** (already running) |
+| Cron scheduling | **node-cron** (free) |
+| Monitoring | **Bull Board** (free, open source) — web UI for job monitoring |
+
+### 📋 Tasks
+
+**Backend:**
+- [ ] Bull queue setup with local Redis
+- [ ] `syncCampaigns.job.js` — daily 2 AM cron
+- [ ] Job progress tracking and logging (Winston logger — free)
+- [ ] Failed job retry with exponential backoff (max 3 attempts)
+- [ ] Dead letter queue for persistently failing jobs
+- [ ] Manual sync trigger: `POST /campaigns/sync`
+- [ ] Email alert on 3 consecutive failures (Ethereal Email for dev)
+
+**Frontend:**
+- [ ] Last synced timestamp per platform
+- [ ] Sync status indicator (🟢 synced / 🟡 pending / 🔴 failed)
+- [ ] Manual "Sync Now" button
+- [ ] Job monitoring dashboard (admin only) using Bull Board
+
+### ✅ Deliverables
+- [x] Automated daily sync running
+- [x] Manual sync working
+- [x] Job monitoring UI
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+## Sprint 8 | Campaign Analytics & Charts | Week 8
+
+### 🎯 Goals
+- Deep campaign analytics
+- Historical trend charts
+- Data export
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| Charts | **Recharts** (line, bar — free) + **Chart.js** via **react-chartjs-2** (free) |
+| CSV Export | **papaparse** or manual CSV generation (free) |
+| Date utils | **date-fns** (free) |
+
+### 📋 Tasks
+
+**Backend:**
+- [ ] `GET /campaigns/:id/metrics` — daily metrics for date range
+- [ ] Aggregation queries: sum spend, avg ROAS, total conversions
+- [ ] Campaign ranking endpoint (sorted by ROAS)
+- [ ] Export data as CSV via API
+
+**Frontend:**
+- [ ] Line chart: spend trend over time
+- [ ] Bar chart: ROAS by platform comparison
+- [ ] Conversion funnel chart (impressions → clicks → conversions)
+- [ ] Campaign detail modal with full metrics
+- [ ] Top campaigns table sorted by ROAS
+- [ ] Budget utilization progress bars with pacing alerts
+- [ ] "Export CSV" button
+- [ ] A/B test comparison view (two campaigns side by side)
+
+### ✅ Deliverables
+- [x] Full campaign analytics page
+- [x] All charts rendering
+- [x] CSV export working
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+# 📅 MONTH 3 — AI Engine, Invoicing & Reporting
+
+---
+
+## Sprint 9 | Claude AI Integration & Insights | Week 9
+
+### 🎯 Goals
+- AI insight generation pipeline
+- Insight display UI
+- Health score from AI
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| AI Engine | **Mock AI Service** (returns hardcoded insights during dev) |
+| Real AI testing | **Claude API Free Credits** (new accounts get trial credits) |
+| JSON validation | **Joi** (free) |
+
+> [!IMPORTANT]
+> **Strategy:** Build the entire pipeline using `mockAiService.js` first. Only switch to real Claude API when you want to test AI quality. This saves 100% of AI costs during development.
+
+### 📋 Tasks
+
+**Backend:**
+- [ ] `promptTemplates.js` — parameterized prompt builder
+- [ ] `mockAiService.js` — returns realistic mock insights JSON
+- [ ] `aiService.js` — real Claude API integration (toggle via env var)
+- [ ] Joi schema to validate AI JSON response
+- [ ] `ai_insights` table population from AI output
+- [ ] `runAIAnalysis.job.js` — nightly 3 AM cron (Bull queue)
+- [ ] `GET /insights/:clientId` — fetch insights
+- [ ] `PATCH /insights/:id/action` — mark as actioned
+- [ ] Health score calculation from AI output → update `clients.health_score`
+
+```javascript
+// Toggle between mock and real AI
+// .env
+AI_SERVICE_MODE=mock   # 'mock' for dev, 'live' for real Claude API
+
+// aiService.js
+const mode = process.env.AI_SERVICE_MODE || 'mock';
+const service = mode === 'live' 
+  ? require('./realAiService')
+  : require('./mockAiService');
+```
+
+**Frontend:**
+- [ ] AI Insights page with insight cards by type
+- [ ] Severity color coding: 🔴 critical, 🟠 high, 🟡 medium, 🟢 low
+- [ ] "Mark as Actioned" button per insight
+- [ ] "Dismiss" button per insight
+- [ ] Health score widget updated from AI
+- [ ] Insight type filter (alert / opportunity / forecast / recommendation)
+
+### ✅ Deliverables
+- [x] AI insights pipeline working (mock mode)
+- [x] Insights page with real-looking data
+- [x] Health score updating
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+## Sprint 10 | AI Alerts & Forecasting | Week 10
+
+### 🎯 Goals
+- Alert/notification system
+- Revenue forecasting widget
+- On-demand AI tools
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| Notifications | **In-app only** (DB + WebSocket via **socket.io** — free) |
+| Email alerts | **Ethereal Email** (fake inbox, free) or **SendGrid Free** (100/day) |
+| WhatsApp | **SKIP** — mock it or skip entirely for dev |
+
+### 📋 Tasks
+
+**Backend:**
+- [ ] `notifications` table + API: `GET /notifications`
+- [ ] Alert routing logic: critical/high → create notification
+- [ ] Email alert (Ethereal Email or SendGrid Free)
+- [ ] WhatsApp: **create mock** `whatsappService.js` (just logs to console)
+- [ ] `POST /insights/:clientId/generate` — manual trigger
+- [ ] Revenue forecast prompt template
+- [ ] Budget reallocation recommendation logic
+- [ ] Content idea generator prompt template
+- [ ] AI-suggested ad copy prompt template
+- [ ] Competitor gap analysis prompt (SEO)
+- [ ] Insight history: `GET /insights/:clientId?days=30`
+
+**Frontend:**
+- [ ] Notification bell with unread count badge
+- [ ] Notification dropdown with mark-as-read
+- [ ] Revenue forecast widget on dashboard
+- [ ] Budget reallocation card (approve/dismiss)
+- [ ] "Generate Insights Now" button
+- [ ] Content idea generator button
+- [ ] Insight history view (past 30 days)
+
+### ✅ Deliverables
+- [x] Alert system working (in-app + email)
+- [x] Forecast widget on dashboard
+- [x] On-demand AI tools functional
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+## Sprint 11 | Invoicing & Payment System | Week 11
+
+### 🎯 Goals
+- Invoice generation
+- Payment tracking
+- GST compliance
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| Payments | **Razorpay Test Mode** (free, unlimited test transactions) |
+| PDF Generation | **Puppeteer** (free, open source) or **PDFKit** (free) |
+| File Storage | **Local `/uploads` folder** (instead of S3 — swap later) |
+| Email | **SendGrid Free** or **Ethereal Email** |
+
+> [!TIP]
+> **Razorpay Test Mode** is completely free. Use test card `4111 1111 1111 1111` for payment testing. All webhooks work in test mode too!
+
+### 📋 Tasks
+
+**Backend:**
+- [ ] Razorpay SDK setup with **test keys** (free)
+- [ ] `invoiceService.js` — `createMonthlyInvoice(clientId)`
+- [ ] Auto invoice number: `INV-2026-04-001`
+- [ ] GST calculation (18% on service amount)
+- [ ] PDF invoice generation (Puppeteer or PDFKit)
+- [ ] Save PDF to local `/uploads/invoices/` folder
+- [ ] `POST /invoices` — create invoice manually
+- [ ] `POST /invoices/:id/send` — send to client email
+- [ ] `POST /webhooks/razorpay` — payment webhook handler
+- [ ] Webhook signature verification (HMAC-SHA256)
+- [ ] Overdue detection cron — daily 9 AM check
+- [ ] Overdue reminder email at 7 and 14 days
+
+**Frontend:**
+- [ ] Invoicing page with status tabs (All / Paid / Pending / Overdue)
+- [ ] Create invoice form
+- [ ] Invoice detail view with payment link
+- [ ] Payment status badge
+- [ ] "Send Invoice" button
+- [ ] Overdue visual indicator (red highlight)
+
+**Local File Storage Helper (instead of S3):**
+```javascript
+// utils/fileStorage.js
+const USE_S3 = process.env.USE_S3 === 'true';
+
+async function uploadFile(filePath, key) {
+  if (USE_S3) {
+    return require('./s3Uploader').upload(filePath, key);
+  }
+  // Local storage fallback
+  const localPath = path.join(__dirname, '../../uploads', key);
+  await fs.copyFile(filePath, localPath);
+  return `/uploads/${key}`;
+}
+```
+
+### ✅ Deliverables
+- [x] Invoice creation and PDF generation
+- [x] Razorpay test payments working
+- [x] Overdue detection running
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+## Sprint 12 | Report Generation & Client Portal | Week 12
+
+### 🎯 Goals
+- Auto PDF report generation
+- Client read-only portal
+- Scheduled email delivery
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| PDF | **Puppeteer** (HTML → PDF, free) |
+| Email | **SendGrid Free** (100/day) |
+| File storage | **Local filesystem** |
+| Auth (client portal) | **Magic link via JWT** (free) |
+
+### 📋 Tasks
+
+**Backend:**
+- [ ] HTML report template (white-label ready — agency logo + colors)
+- [ ] `reportService.js` — compile metrics + AI narrative
+- [ ] Puppeteer HTML-to-PDF rendering
+- [ ] Save to local `/uploads/reports/`
+- [ ] `generateReports.job.js` — Monday 8 AM cron
+- [ ] `GET /reports/:clientId` — list reports with download links
+- [ ] `POST /reports/:clientId/generate` — on-demand report
+- [ ] Email delivery with PDF attachment (SendGrid Free)
+- [ ] WhatsApp summary: **mock** (console.log top 3 KPIs)
+- [ ] Client portal: `/client-portal/[token]` — read-only
+- [ ] Magic link generation (JWT with 24h expiry)
+- [ ] Client portal shows only their data (no agency financials)
+
+**Frontend:**
+- [ ] Reports list page with download buttons
+- [ ] "Generate Report Now" button
+- [ ] Client portal — simplified read-only dashboard
+- [ ] Client portal — KPIs, charts, AI summary
+- [ ] Client portal — report download
+- [ ] Client portal — support query form
+
+### ✅ Deliverables
+- [x] Reports auto-generating
+- [x] Client portal accessible
+- [x] PDF downloads working
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+# 📅 MONTH 4 — SEO, CRM, Polish & Launch
+
+---
+
+## Sprint 13 | SEO Tracker & Social Media | Week 13
+
+### 🎯 Goals
+- SEO keyword tracking
+- Social media analytics
+- Content calendar
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| SEO Data | **Google Search Console API** (free) + **Mock data** for SEMrush |
+| Instagram API | **Instagram Basic Display API** (free for basic data) |
+| Calendar UI | **react-big-calendar** (free) or custom build |
+| Drag & Drop | **@dnd-kit** (free) or **react-beautiful-dnd** (free) |
+
+> [!NOTE]
+> SEMrush API is paid. During dev, use **Google Search Console** (100% free) for keyword data, and **mock SEMrush data** for features that need it. You can add SEMrush when you're making revenue.
+
+### 📋 Tasks
+
+**Backend:**
+- [ ] Google Search Console API integration (free)
+- [ ] Mock `semrush.js` returning sample keyword data
+- [ ] `seo_keywords` and `seo_rankings` tables
+- [ ] `GET /seo/:clientId/keywords` — list tracked keywords
+- [ ] `POST /seo/:clientId/keywords` — add keywords
+- [ ] Weekly keyword position sync job
+- [ ] SEO health score calculation
+- [ ] Instagram Basic Display API — post reach, engagement
+- [ ] `social_posts` table for scheduling
+- [ ] Content calendar CRUD API
+
+**Frontend:**
+- [ ] SEO dashboard with keyword position table
+- [ ] SEO trend chart: position changes over 90 days
+- [ ] Social media analytics page (post performance table)
+- [ ] Content calendar (week view, drag-and-drop)
+- [ ] Best time to post widget (AI recommendation — mock)
+- [ ] Follower growth tracking chart
+
+### ✅ Deliverables
+- [x] SEO tracking working
+- [x] Social analytics page
+- [x] Content calendar functional
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+## Sprint 14 | CRM Module & Team Management | Week 14
+
+### 🎯 Goals
+- Full client CRM
+- Team task management
+- Communication logs
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| Rich text editor | **Tiptap** (free) or **React Quill** (free) |
+| Drag & Drop (Kanban) | **@dnd-kit** (free) |
+| All other | Already set up tools (PostgreSQL, Express, React) |
+
+### 📋 Tasks
+
+**Backend:**
+- [ ] Communication log table + CRUD API
+- [ ] Client timeline query (all interactions chronological)
+- [ ] Task board API (CRUD with status: todo/in-progress/done)
+- [ ] Task assignment to team members
+- [ ] Due date alert cron (daily check)
+- [ ] Contract renewal alert: 30/15/7 days before expiry
+- [ ] Team members API (invite, assign role, deactivate)
+- [ ] Activity feed: recent actions across all clients
+- [ ] Client satisfaction score (1-5 rating)
+
+**Frontend:**
+- [ ] Communication log form (type, date, notes, outcome)
+- [ ] Client timeline view
+- [ ] Kanban task board (drag-and-drop)
+- [ ] Team management page
+- [ ] Activity feed widget
+- [ ] Renewal alert banner
+- [ ] Client notes (rich text editor)
+
+### ✅ Deliverables
+- [x] CRM module fully functional
+- [x] Task management working
+- [x] Team management operational
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+## Sprint 15 | Revenue Analytics & Testing | Week 15
+
+### 🎯 Goals
+- Revenue analytics dashboard
+- Full QA testing
+- Performance optimization
+
+### 🛠️ Free Tools Used
+| Need | Free Solution |
+|------|--------------|
+| Testing | **Jest** (unit tests, free) + **Supertest** (API tests, free) |
+| E2E Testing | **Playwright** (free, by Microsoft) |
+| Load Testing | **Artillery** (free, open source) |
+| Performance | **Chrome Lighthouse** (free, built into Chrome) |
+| Code coverage | **Jest --coverage** (free) |
+
+### 📋 Tasks
+
+**Revenue Analytics:**
+- [ ] `GET /analytics/revenue` — MRR, ARR, growth rate, churn rate
+- [ ] Revenue trend chart: 12-month MRR line chart
+- [ ] Revenue breakdown by plan (Starter/Growth/Premium)
+- [ ] Client LTV calculation and display
+- [ ] Churn risk scoring (declining health score)
+- [ ] P&L summary: revenue vs operational costs
+
+**Testing:**
+- [ ] Unit tests for all service functions (Jest)
+- [ ] API integration tests (Supertest)
+- [ ] E2E tests for critical flows (Playwright):
+  - Login/Register
+  - Client CRUD
+  - Campaign view
+  - Invoice create + send
+  - Report generate + download
+- [ ] Load testing: 50 concurrent users (Artillery)
+- [ ] Fix all failing tests
+
+**Performance:**
+- [ ] Redis cache hit rate optimization
+- [ ] Database query optimization (add indexes)
+- [ ] Image optimization and lazy loading
+- [ ] Lighthouse: Performance >90, Accessibility >95
+- [ ] Cross-browser testing: Chrome, Firefox, Edge
+
+### ✅ Deliverables
+- [x] Revenue analytics dashboard live
+- [x] All tests passing
+- [x] Performance targets met
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+## Sprint 16 | Production Prep & Go-Live | Week 16
+
+### 🎯 Goals
+- Prepare for production deployment
+- Documentation
+- First client onboarding prep
+
+### 🛠️ Free Tools Used (Dev Phase)
+| Need | Free Solution |
+|------|--------------|
+| Docker | **Docker Compose** (free) — production-ready config |
+| SSL (local) | **mkcert** (free, for local HTTPS testing) |
+| Documentation | **Markdown** in repo (free) |
+| Monitoring | **Sentry Free** (5K errors/mo) |
+
+> [!IMPORTANT]
+> **This sprint prepares everything for launch.** You DON'T need to pay for AWS yet. Just prepare the configs, Docker files, and documentation so that when you're ready to deploy with a paying client, it's a one-step process.
+
+### 📋 Tasks
+
+**Production Readiness (prepare configs, don't deploy yet):**
+- [ ] Docker Compose production config (multi-stage builds)
+- [ ] Dockerfile for backend (optimized, slim image)
+- [ ] Environment variable documentation (all required vars)
+- [ ] GitHub Actions CI/CD pipeline (test → build → deploy)
+- [ ] Database migration scripts (clean, versioned)
+- [ ] Seed data removal (no test data in production)
+- [ ] Security audit checklist:
+  - [ ] All SQL queries parameterized
+  - [ ] CORS whitelist configured
+  - [ ] Rate limiting enabled
+  - [ ] JWT expiry times correct
+  - [ ] Passwords properly hashed
+  - [ ] OAuth tokens encrypted
+  - [ ] Webhook signatures verified
+- [ ] Error handling review (no stack traces exposed)
+
+**Documentation:**
+- [ ] API documentation (all endpoints)
+- [ ] User onboarding guide
+- [ ] Admin setup guide
+- [ ] Video walkthrough (Loom — free)
+
+**Launch Checklist (for when you get first client):**
+- [ ] Prepare step-by-step AWS deployment guide
+- [ ] Prepare domain purchase + DNS guide
+- [ ] Prepare Razorpay live mode activation steps
+- [ ] Prepare SendGrid upgrade steps
+- [ ] Prepare Claude API billing setup steps
+
+### ✅ Deliverables
+- [x] Production-ready codebase
+- [x] Complete documentation
+- [x] One-step deployment guide ready
+- [x] First client onboarding flow tested
+
+### 💰 Sprint Cost: ₹0
+
+---
+
+# 🔄 Transition to Production (When Ready)
+
+When you get your first paying client, here's what changes:
+
+| Change | Action | Monthly Cost |
+|--------|--------|-------------|
+| **Database** | Docker → AWS RDS | ₹2,800 |
+| **Cache** | Docker → AWS ElastiCache | ₹1,800 |
+| **Backend** | Localhost → AWS EC2 | ₹3,200 |
+| **Frontend** | Vercel Free → Vercel Pro | ₹1,500 |
+| **AI** | Mock → Claude API Live | ₹1,500-3,000 |
+| **Email** | Ethereal → SendGrid Essentials | ₹1,500 |
+| **Files** | Local → AWS S3 | ₹400 |
+| **Monitoring** | Sentry Free → Sentry Dev | ₹1,800 |
+| **Domain** | localhost → growiq.in | ₹600 |
+| **WhatsApp** | Mock → 360dialog | ₹800+ |
+| **TOTAL** | | **~₹15,000/mo** |
+
+> Your **first Starter client (₹15,000/mo)** covers the entire infrastructure. Every client after that is profit! 🎉
+
+---
+
+## 📊 Grand Summary
+
+```
+┌─────────────────────────────────────────────────────┐
+│  4-MONTH DEVELOPMENT COST SUMMARY                    │
+├──────────────┬──────────────────────────┬────────────┤
+│  Phase       │  What You Use            │  Cost      │
+├──────────────┼──────────────────────────┼────────────┤
+│  Month 1     │  Docker + Localhost       │  ₹0        │
+│  Month 2     │  Mock APIs + Free tiers   │  ₹0        │
+│  Month 3     │  Mock AI + Razorpay Test  │  ₹0        │
+│  Month 4     │  Testing + Docs           │  ₹0        │
+├──────────────┼──────────────────────────┼────────────┤
+│  TOTAL       │                          │  ₹0        │
+└──────────────┴──────────────────────────┴────────────┘
+
+  → First client pays ₹15,000/mo → Covers all infra
+  → Second client onwards = pure profit margin 85-90%
+```
+
+---
+
+**Ready to start Sprint 1? Let's build! 🚀**

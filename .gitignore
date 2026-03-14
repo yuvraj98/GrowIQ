@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+growiq-backend/node_modules/
+growiq-frontend/node_modules/
+growiq-frontend/.next/
+
+# Environment
+.env
+growiq-backend/.env
+growiq-frontend/.env
+
+# Logs
+logs/
+*.log
+growiq-backend/logs/
+
+# Uploads (local dev storage)
+uploads/
+growiq-backend/uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Coverage
+coverage/
+
+# Build
+dist/
+build/
+.next/
+out/

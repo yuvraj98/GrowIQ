@@ -1,0 +1,56 @@
+[
+    {
+        "campaign_id": "mock-meta-001",
+        "name": "Brand Awareness Q1 2026",
+        "platform": "meta",
+        "status": "active",
+        "objective": "BRAND_AWARENESS",
+        "daily_budget": 2500,
+        "metrics": {
+            "spend": 48500,
+            "impressions": 985000,
+            "clicks": 12300,
+            "conversions": 245,
+            "revenue": 87500,
+            "ctr": 1.25,
+            "cpc": 3.94,
+            "roas": 1.8
+        }
+    },
+    {
+        "campaign_id": "mock-meta-002",
+        "name": "Lead Generation Instagram",
+        "platform": "meta",
+        "status": "active",
+        "objective": "LEAD_GENERATION",
+        "daily_budget": 3000,
+        "metrics": {
+            "spend": 52000,
+            "impressions": 720000,
+            "clicks": 18500,
+            "conversions": 680,
+            "revenue": 270000,
+            "ctr": 2.57,
+            "cpc": 2.81,
+            "roas": 5.19
+        }
+    },
+    {
+        "campaign_id": "mock-meta-003",
+        "name": "Retargeting - Website Visitors",
+        "platform": "meta",
+        "status": "active",
+        "objective": "CONVERSIONS",
+        "daily_budget": 1500,
+        "metrics": {
+            "spend": 28000,
+            "impressions": 450000,
+            "clicks": 9800,
+            "conversions": 320,
+            "revenue": 112000,
+            "ctr": 2.18,
+            "cpc": 2.86,
+            "roas": 4.0
+        }
+    }
+]

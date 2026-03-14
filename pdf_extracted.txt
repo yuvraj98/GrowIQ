@@ -1,0 +1,1805 @@
+Total pages: 40
+
+--- PAGE 1 ---
+GROWIQ
+ All-in-One Digital Marketing Business Platform
+ Complete Project Document
+ 
+ Business Model · System Design · LLD · Use Cases · 4-Month Sprint Plan
+ 
+ Version 1.0 · March 2026 · Confidential
+ 
+
+--- PAGE 2 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 2
+Table of Contents
+1.
+Executive Summary & Business Problem
+3
+2.
+Business Model & Revenue Strategy
+4
+3.
+Product Overview & Feature Set
+5
+4.
+Use Cases & User Stories
+6
+5.
+System Design — High Level (HLD)
+8
+6.
+System Design — Low Level (LLD)
+10
+7.
+Database Schema
+13
+8.
+API Design
+15
+9.
+Tech Stack — Detailed Justification
+17
+10.
+AI Engine Architecture
+18
+11.
+Security & Infrastructure
+19
+12.
+4-Month Sprint Plan (16 Sprints)
+20
+13.
+Team Structure & Cost
+27
+14.
+Go-To-Market Strategy
+28
+15.
+Risk Register
+29
+
+
+--- PAGE 3 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 3
+Chapter 1
+Executive Summary & Business Problem
+GrowIQ is a SaaS platform that gives digital marketing agencies and business owners a single
+command center to track campaigns, manage clients, generate AI-powered insights, and automate
+invoicing — replacing 6+ disconnected tools with one intelligent platform.
+1.1 The Problem
+Indian SMBs spend ■50,000–■2,00,000/month on digital marketing yet have no unified way to measure
+ROI across channels. Agencies managing 10+ clients juggle Meta Ads Manager, Google Ads, Analytics,
+spreadsheets, WhatsApp, and accounting tools separately, leading to missed optimisations, delayed
+reporting, and client churn.
+ No single dashboard — data lives in 5–7 disconnected tools
+ Manual reporting consumes 15–20 hours/week per agency
+ No AI to detect underperforming campaigns in real-time
+ Client invoicing done manually via Excel or Tally — error-prone
+ No revenue forecasting or business health scoring
+ Agencies lose clients because they cannot prove ROI clearly
+ Small businesses cannot afford enterprise tools like HubSpot or Salesforce
+1.2 The Solution — GrowIQ
+GrowIQ solves every one of these problems in a single subscription. It auto-connects to Meta Ads,
+Google Ads, GA4, and SEO tools via APIs, processes all data using the Claude AI engine, and delivers
+actionable insights, automated reports, and branded client dashboards — all from one login.
+1.3 Market Opportunity
+ Metric
+ Value
+ Source
+Digital ad spend in India (2026)
+■38,000 Crore
+IAMAI
+SMBs spending on digital marketing
+6.3 Million
+Industry Est.
+Digital marketing agencies in India
+80,000+
+NASSCOM
+Avg agency managing 8–15 clients
+■3–8L/month revenue
+Primary Research
+Target SaaS platform price point
+■15K–75K/month/client
+GrowIQ Pricing
+Addressable market (Year 1)
+50,000 agencies
+Conservative Est.
+
+
+--- PAGE 4 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 4
+Chapter 2
+Business Model & Revenue Strategy
+2.1 Subscription Tiers
+Plan
+Price/Month
+Target Client
+ Key Features
+ Margin
+Starter
+■15,000
+Local shops, clinics
+1 platform, basic AI, monthly report
+~85%
+Growth
+■35,000
+Restaurants, coaches
+3 platforms, full AI, weekly report,
+CRM
+~88%
+Premium
+■75,000
+Chains, institutes
+All platforms, daily AI, dedicated AM,
+white-label
+~90%
+2.2 Revenue Model to ■4L/Month
+ Plan
+ Clients
+Monthly Revenue
+ Cumulative
+ 
+Starter (■15K)
+5
+■75,000
+■75,000
+Growth (■35K)
+6
+■2,10,000
+■2,85,000
+Premium (■75K)
+2
+■1,50,000
+■4,35,000
+TOTAL
+13
+■4,35,000
+Target Achieved ✓
+2.3 Additional Revenue Streams
+One-time Setup Fee
+■10,000–■25,000 per new client onboarding
+White-label Licence
+Other agencies buy GrowIQ under their brand —
+■50,000/month
+Ad Spend Commission
+5–10% commission on ad budgets managed through platform
+Report Add-ons
+Competitor analysis reports, custom dashboards —
+■5,000–■15,000
+API Access
+Developers & enterprise clients access raw API —
+■20,000/month
+2.4 Unit Economics
+ Metric
+ Value
+ 
+Customer Acquisition Cost (CAC)
+■8,000–■15,000
+
+
+--- PAGE 5 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 5
+Lifetime Value — Starter (18 months)
+■2,70,000
+Lifetime Value — Growth (18 months)
+■6,30,000
+LTV : CAC Ratio
+18–42x
+Monthly Churn Target
+<5%
+Payback Period
+1–2 months
+Gross Margin
+85–90%
+
+
+--- PAGE 6 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 6
+Chapter 3
+Product Overview & Feature Set
+Command Dashboard
+ Real-time KPI cards: Revenue, Active Clients, Live Campaigns, Avg ROAS
+ Agency Health Score — composite metric (0–100)
+ Multi-client switcher — view any client dashboard in one click
+ Notification centre — alerts, overdue invoices, campaign warnings
+Campaign Tracker
+ Auto-sync from Meta Ads API, Google Ads API, GA4, Instagram Graph API
+ Campaign performance table with ROAS, CTR, CPC, CPL, conversions
+ Budget utilisation bars and pacing alerts
+ A/B test comparison view
+ Historical trend charts (7D / 30D / 90D / custom)
+AI Insights Engine
+ Powered by Claude API with business-context-aware prompt templates
+ Daily automated analysis of all client campaign data
+ Actionable recommendations: pause, scale, reallocate budget
+ Revenue forecasting based on trend extrapolation
+ Competitor gap analysis (SEO)
+ Content idea generator for social media
+ Auto-generated monthly performance narrative
+Client CRM
+ Client profiles with contact info, business type, plan tier
+ Communication log — calls, emails, WhatsApp notes
+ Client health score — engagement, payment, satisfaction
+ Task board — assign deliverables to team members
+ Renewal alerts — 30/15/7 days before contract end
+Revenue & Invoicing
+ Auto-generate GST-compliant invoices (Razorpay integration)
+ Recurring subscription billing for monthly retainers
+ Payment status dashboard — paid, pending, overdue
+ Revenue analytics — MRR, ARR, growth rate, churn
+ P&L; summary per client and overall agency
+
+
+--- PAGE 7 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 7
+Reporting Module
+ Auto-generated weekly/monthly PDF reports per client
+ White-label with client branding and agency logo
+ Scheduled email delivery via SendGrid
+ WhatsApp summary (key metrics) via 360dialog API
+ Custom report builder — drag-and-drop KPI selection
+SEO Tracker
+ Keyword position tracking (top 100)
+ Backlink monitoring
+ Core Web Vitals integration (Google Search Console API)
+ On-page SEO health score
+ Monthly SEO progress report
+Social Media Manager
+ Post scheduler for Instagram, Facebook, LinkedIn
+ Engagement analytics — likes, comments, reach, saves
+ Best time to post recommendations (AI)
+ Content calendar view
+ Follower growth tracking
+
+
+--- PAGE 8 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 8
+Chapter 4
+Use Cases & User Stories
+4.1 Actors / Roles
+Actor
+ Role
+ Primary Actions
+ 
+Agency Owner
+Super admin of GrowIQ
+platform
+View all clients, revenue, hire team, set pricing
+Account Manager
+Manages assigned clients
+Run campaigns, generate reports, communicate with
+clients
+Client (Business
+Owner)
+Read-only dashboard
+access
+View their own KPIs, download reports, raise queries
+AI Engine
+Automated background
+service
+Analyse data nightly, generate insights, send alerts
+Finance Admin
+Manages billing & invoicing
+Generate invoices, track payments, send reminders
+4.2 Core Use Cases
+UC-01 — Client Onboarding
+Actor
+Agency Owner / AM
+Flow
+1. Agency creates client profile
+2. System sends onboarding link
+3. Client connects Meta & Google accounts via OAuth
+4. Platform pulls historical 90-day data
+5. AI generates first health score & baseline report
+Success
+Outcome
+Client dashboard populated with real data within 24 hours
+
+
+--- PAGE 9 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 9
+UC-02 — Campaign Performance Monitoring
+Actor
+Account Manager
+Flow
+1. AM opens Campaign Tracker
+2. Selects client and date range
+3. Views auto-synced campaign data
+4. Checks AI recommendation panel
+5. Takes action (pause/scale) directly from UI
+Success
+Outcome
+Campaign optimised based on AI recommendation
+UC-03 — AI Insight Generation
+Actor
+AI Engine (automated)
+Flow
+1. Cron job triggers nightly at 2 AM
+2. System fetches all clients campaign data
+3. Feeds data to Claude API with prompt template
+4. AI returns structured JSON insights
+5. Insights saved to DB and shown in dashboard
+6. Critical alerts sent via email/WhatsApp
+Success
+Outcome
+Actionable insights available every morning
+UC-04 — Invoice Generation & Payment
+Actor
+Finance Admin
+Flow
+1. System auto-creates invoice on billing date
+2. Invoice populated with client name, services, GST
+3. Razorpay payment link embedded
+4. Invoice emailed to client
+5. Payment status updated in real-time
+6. Overdue alert at 7 & 14 days
+Success
+Outcome
+Invoice paid and revenue recorded
+
+
+--- PAGE 10 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 10
+UC-05 — Weekly Report Generation
+Actor
+AI Engine + AM
+Flow
+1. Every Monday 8 AM cron triggers report generation
+2. System pulls 7-day campaign data per client
+3. Claude API writes performance narrative
+4. PDF generated with branding
+5. Sent to client via email and WhatsApp
+Success
+Outcome
+Client receives professional branded report
+UC-06 — Client Portal Access
+Actor
+Client (Business Owner)
+Flow
+1. Client logs in with unique credentials
+2. Sees their own dashboard (read-only)
+3. Views live KPIs, charts, AI summary
+4. Downloads latest report
+5. Raises a support query if needed
+Success
+Outcome
+Client has full transparency into their marketing
+UC-07 — SEO Keyword Tracking
+Actor
+Account Manager
+Flow
+1. AM adds target keywords for client
+2. System checks positions daily via SEMrush API
+3. Position changes shown in trend chart
+4. AI highlights quick-win keyword opportunities
+5. SEO section included in monthly report
+Success
+Outcome
+Client SEO progress tracked & reported
+
+
+--- PAGE 11 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 11
+UC-08 — Budget Reallocation Alert
+Actor
+AI Engine
+Flow
+1. AI detects campaign ROAS < 2.5x
+2. Checks if other campaigns performing > 5x
+3. Generates reallocation recommendation
+4. Sends push notification + email to AM
+5. AM approves or dismisses recommendation
+Success
+Outcome
+Budget shifted to better-performing campaigns
+4.3 User Stories (Agile Format)
+ID
+As a...
+ I want to...
+ So that...
+ 
+US-01
+Agency Owner
+see all client KPIs on one screen
+I can make decisions without
+switching tools
+US-02
+Agency Owner
+receive AI alerts when a campaign
+underperforms
+I can fix issues before clients
+notice
+US-03
+Account Manager
+generate a branded PDF report in one click
+I save 3 hours per client per
+week
+US-04
+Account Manager
+see AI-suggested ad copy
+I can launch campaigns faster
+US-05
+Client
+log in and see my marketing performance
+I trust the agency with my
+budget
+US-06
+Client
+receive a WhatsApp summary every Monday
+I stay informed without logging
+in
+US-07
+Finance Admin
+auto-generate GST invoices on the 1st of each
+month
+I eliminate manual billing errors
+US-08
+Finance Admin
+see which clients have overdue payments
+I can follow up proactively
+US-09
+AM
+compare campaign performance across clients
+I can identify best practices to
+replicate
+US-10
+Agency Owner
+see agency revenue MRR trend
+I can forecast and plan hiring
+
+
+--- PAGE 12 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 12
+Chapter 5
+System Design — High Level (HLD)
+5.1 Architecture Overview
+GrowIQ follows a three-tier architecture: a Next.js frontend served via Vercel CDN, a Node.js/Express
+REST API backend running on AWS EC2, and a PostgreSQL database with Redis caching layer. A
+separate AI microservice handles all Claude API calls asynchronously via a job queue.
+5.2 System Layers
+Layer
+ Technology
+ Responsibility
+ 
+Client Layer
+Browser / Mobile App
+Next.js 14 PWA — renders dashboards, charts,
+forms
+CDN / Edge
+Vercel Edge Network
+Caches static assets globally, routes API calls
+API Gateway
+Express.js REST API
+Handles auth, routing, rate limiting, validation
+Business Logic
+Service Layer (Node.js)
+Campaign service, AI service, invoice service, report
+service
+AI Engine
+Claude API + LangChain
+Processes campaign data, returns structured JSON
+insights
+Job Queue
+Bull + Redis
+Handles async jobs: report gen, API sync, AI calls,
+email send
+Data Layer
+PostgreSQL + Redis
+Primary DB for all entities + cache for dashboard data
+File Storage
+AWS S3
+PDF reports, client logos, invoice attachments
+External APIs
+Meta / Google / Razorpay /
+WhatsApp
+Data ingestion and payment processing
+Monitoring
+Sentry + CloudWatch
+Error tracking, performance monitoring, uptime alerts
+5.3 Data Flow
+ Trigger
+ Flow
+ 
+Client connects ad account
+→ OAuth token stored → First sync triggered via job queue
+Nightly sync job (2 AM)
+→ Fetch Meta/Google/SEO data → Store raw metrics in DB
+AI Analysis job (3 AM)
+→ Read metrics → Send to Claude API → Store insights in DB
+User opens dashboard
+→ API checks Redis cache → If miss, queries PostgreSQL → Returns
+JSON
+
+
+--- PAGE 13 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 13
+Report generation
+→ Compile metrics + AI narrative → Render PDF → Upload to S3 →
+Email via SendGrid
+Invoice due date
+→ Cron triggers invoice creation → Razorpay link generated → Email
+to client
+5.4 Integration Architecture
+GrowIQ integrates with external APIs through a dedicated Integration Service that manages OAuth
+tokens, rate limits, retry logic, and data normalisation. All external API responses are normalised into
+GrowIQ's canonical data model before storage.
+API
+Auth Method
+ Data Fetched
+ Frequency
+Meta Ads API v18
+OAuth 2.0
+Campaigns, ad sets, ads, spend, reach,
+conversions
+Daily
+Google Ads API v16
+OAuth 2.0 + Service
+Account
+Campaigns, keywords, quality score,
+conversions
+Daily
+GA4 Data API
+Service Account JSON
+Sessions, bounce rate, goals, revenue,
+user behaviour
+Daily
+Google Search
+Console
+OAuth 2.0
+Keyword impressions, clicks, CTR,
+position
+Daily
+SEMrush API
+API Key
+Keyword rankings, backlinks, domain
+authority
+Weekly
+Razorpay API
+Key + Secret
+Invoice creation, payment links,
+subscription billing
+On demand
+SendGrid API
+API Key
+Transactional emails, report delivery,
+invoice emails
+On demand
+WhatsApp
+(360dialog)
+API Key
+Weekly campaign summaries, critical
+alerts to clients
+Scheduled
+
+
+--- PAGE 14 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 14
+Chapter 6
+System Design — Low Level (LLD)
+6.1 Folder Structure
+Frontend — Next.js 14 (App Router, JavaScript)
+growiq-frontend/ app/ (auth)/login/page.js (auth)/register/page.js dashboard/page.js
+dashboard/[clientId]/campaigns/page.js dashboard/[clientId]/insights/page.js
+dashboard/[clientId]/reports/page.js dashboard/[clientId]/seo/page.js
+dashboard/[clientId]/social/page.js crm/page.js invoicing/page.js settings/page.js
+client-portal/[token]/page.js components/ ui/ (Button, Card, Modal, Table, Badge)
+charts/ (LineChart, BarChart, DonutChart, KPICard) layout/ (Sidebar, Topbar,
+PageWrapper) campaign/ (CampaignTable, CampaignCard, FilterBar) ai/ (InsightCard,
+AlertBanner, ForecastWidget) invoice/ (InvoiceForm, PaymentStatus, InvoiceList) lib/
+api.js (Axios instance with interceptors) auth.js (JWT helpers) utils.js (formatters,
+validators) hooks/ useClient.js useCampaigns.js useInsights.js store/ authStore.js
+(Zustand) clientStore.js styles/globals.css next.config.js
+Backend — Node.js / Express (JavaScript)
+growiq-backend/ src/ config/ db.js (PostgreSQL pool via pg) redis.js (ioredis client)
+env.js (dotenv validation) middleware/ auth.js (JWT verify middleware) rateLimiter.js
+(express-rate-limit) errorHandler.js validator.js (Joi schemas) routes/ auth.routes.js
+client.routes.js campaign.routes.js insight.routes.js invoice.routes.js
+report.routes.js seo.routes.js social.routes.js webhook.routes.js controllers/
+auth.controller.js client.controller.js campaign.controller.js insight.controller.js
+invoice.controller.js report.controller.js services/ campaignService.js aiService.js
+(Claude API calls) invoiceService.js reportService.js emailService.js
+whatsappService.js integrations/ metaAds.js googleAds.js ga4.js semrush.js razorpay.js
+jobs/ syncCampaigns.job.js (daily cron) runAIAnalysis.job.js (nightly cron)
+generateReports.job.js (weekly cron) sendInvoices.job.js (monthly cron) utils/
+logger.js pdfGenerator.js (puppeteer) s3Uploader.js promptTemplates.js app.js server.js
+tests/ .env package.json
+6.2 Key Module Designs
+AI Service — aiService.js
+// aiService.js const Anthropic = require("@anthropic-ai/sdk"); const {
+buildInsightPrompt } = require("../utils/promptTemplates"); const client = new
+Anthropic(); async function generateClientInsights(clientId, campaignData,
+historicalData) { const prompt = buildInsightPrompt(campaignData, historicalData);
+const response = await client.messages.create({ model: "claude-sonnet-4-20250514",
+max_tokens: 2000, system: "You are a senior digital marketing analyst. Return ONLY
+valid JSON.", messages: [{ role: "user", content: prompt }] }); const text =
+response.content[0].text; const insights = JSON.parse(text.replace(/```json|```/g,
+"").trim()); await saveInsights(clientId, insights); return insights; } module.exports
+= { generateClientInsights };
+Campaign Sync Job — syncCampaigns.job.js
+
+
+--- PAGE 15 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 15
+// syncCampaigns.job.js const cron = require("node-cron"); const { fetchMetaCampaigns }
+= require("../integrations/metaAds"); const { fetchGoogleCampaigns } =
+require("../integrations/googleAds"); const { upsertCampaignMetrics } =
+require("../services/campaignService"); // Runs every day at 2:00 AM cron.schedule("0 2
+* * *", async () => { const clients = await getActiveClients(); for (const client of
+clients) { try { const [metaData, googleData] = await Promise.all([
+fetchMetaCampaigns(client.meta_token, client.meta_ad_account_id),
+fetchGoogleCampaigns(client.google_token, client.google_customer_id) ]); await
+upsertCampaignMetrics(client.id, [...metaData, ...googleData]); await
+invalidateCache(`dashboard:${client.id}`); } catch (err) { logger.error(`Sync failed
+for client ${client.id}`, err); } } });
+Invoice Service — invoiceService.js
+// invoiceService.js const Razorpay = require("razorpay"); const { generateInvoicePDF }
+= require("../utils/pdfGenerator"); const razorpay = new Razorpay({ key_id:
+process.env.RAZORPAY_KEY_ID, key_secret: process.env.RAZORPAY_SECRET }); async function
+createMonthlyInvoice(clientId) { const client = await getClientById(clientId); const
+amount = client.plan_price * 100; // paise const invoice = await
+razorpay.invoices.create({ type: "invoice", date: Date.now(), customer: { name:
+client.name, email: client.email }, line_items: [{ name: `GrowIQ ${client.plan} Plan`,
+amount }], currency: "INR" }); const pdfPath = await generateInvoicePDF(invoice,
+client); await uploadToS3(pdfPath, `invoices/${client.id}/${invoice.id}.pdf`); await
+sendInvoiceEmail(client.email, invoice); return invoice; }
+
+
+--- PAGE 16 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 16
+Chapter 7
+Database Schema
+7.1 Entity Relationship Overview
+ Table
+ Description
+ 
+users
+Agency owners, account managers, finance admins
+clients
+Business clients managed by the agency
+client_integrations
+OAuth tokens and API credentials per client per platform
+campaigns
+Campaigns pulled from Meta/Google per client
+campaign_metrics
+Daily metrics: spend, impressions, clicks, conversions, ROAS
+ai_insights
+AI-generated insights per client per day
+invoices
+Invoice records linked to clients
+payments
+Payment records linked to invoices (Razorpay webhook data)
+reports
+Generated report records with S3 URL
+seo_keywords
+Keywords tracked per client
+seo_rankings
+Daily keyword position snapshots
+social_posts
+Scheduled social media posts
+notifications
+In-app alerts per user
+audit_logs
+All user actions for security and accountability
+7.2 Core Table Schemas (PostgreSQL)
+CREATE TABLE users
+CREATE TABLE users ( id UUID PRIMARY KEY DEFAULT gen_random_uuid(), agency_id UUID
+REFERENCES agencies(id), name VARCHAR(100) NOT NULL, email VARCHAR(150) UNIQUE NOT
+NULL, password_hash VARCHAR(255) NOT NULL, role ENUM(owner, manager, finance, viewer),
+is_active BOOLEAN DEFAULT true, last_login TIMESTAMP, created_at TIMESTAMP DEFAULT
+NOW() );
+CREATE TABLE clients
+CREATE TABLE clients ( id UUID PRIMARY KEY DEFAULT gen_random_uuid(), agency_id UUID
+REFERENCES agencies(id), assigned_to UUID REFERENCES users(id), business_name
+VARCHAR(150) NOT NULL, business_type VARCHAR(80), contact_name VARCHAR(100),
+contact_email VARCHAR(150), contact_phone VARCHAR(20), gst_number VARCHAR(20), plan
+ENUM(starter, growth, premium) DEFAULT starter, plan_price DECIMAL(10,2), billing_date
+INTEGER DEFAULT 1, health_score INTEGER DEFAULT 0, status ENUM(active, paused, churned)
+DEFAULT active, onboarded_at TIMESTAMP, created_at TIMESTAMP DEFAULT NOW() );
+
+
+--- PAGE 17 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 17
+CREATE TABLE campaign_metrics
+CREATE TABLE campaign_metrics ( id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+campaign_id UUID REFERENCES campaigns(id), client_id UUID REFERENCES clients(id), date
+DATE NOT NULL, platform ENUM(meta, google, instagram, youtube, linkedin), spend
+DECIMAL(12,2) DEFAULT 0, impressions BIGINT DEFAULT 0, clicks INTEGER DEFAULT 0,
+conversions INTEGER DEFAULT 0, revenue DECIMAL(12,2) DEFAULT 0, roas DECIMAL(6,2)
+GENERATED ALWAYS AS (revenue/NULLIF(spend,0)) STORED, ctr DECIMAL(6,4) GENERATED ALWAYS
+AS (clicks::decimal/NULLIF(impressions,0)) STORED, cpc DECIMAL(10,2) GENERATED ALWAYS
+AS (spend/NULLIF(clicks,0)) STORED, cpl DECIMAL(10,2), UNIQUE(campaign_id, date) );
+CREATE TABLE ai_insights
+CREATE TABLE ai_insights ( id UUID PRIMARY KEY DEFAULT gen_random_uuid(), client_id
+UUID REFERENCES clients(id), insight_date DATE DEFAULT CURRENT_DATE, type ENUM(alert,
+opportunity, forecast, recommendation), severity ENUM(low, medium, high, critical),
+title VARCHAR(200), body TEXT, action_taken BOOLEAN DEFAULT false, dismissed BOOLEAN
+DEFAULT false, created_at TIMESTAMP DEFAULT NOW() );
+CREATE TABLE invoices
+CREATE TABLE invoices ( id UUID PRIMARY KEY DEFAULT gen_random_uuid(), client_id UUID
+REFERENCES clients(id), invoice_number VARCHAR(30) UNIQUE, razorpay_invoice_id
+VARCHAR(100), amount DECIMAL(12,2), gst_amount DECIMAL(12,2), total_amount
+DECIMAL(12,2), status ENUM(draft, sent, paid, overdue, cancelled) DEFAULT draft,
+due_date DATE, paid_at TIMESTAMP, pdf_url VARCHAR(500), created_at TIMESTAMP DEFAULT
+NOW() );
+
+
+--- PAGE 18 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 18
+Chapter 8
+API Design
+8.1 REST API Conventions
+Base URL
+https://api.growiq.in/v1
+Authentication
+Bearer JWT token in Authorization header
+Content Type
+application/json
+Rate Limiting
+100 req/min per user, 1000 req/min per agency
+Error Format
+{ "success": false, "error": { "code": "...", "message": "..." } }
+Success Format
+{ "success": true, "data": {...}, "meta": { "page": 1, "total": 100 } }
+Versioning
+URL-based versioning — /v1/, /v2/
+8.2 API Endpoints
+Method
+ Endpoint
+ Description
+ Access
+POST
+/auth/login
+Login — returns JWT
+Public
+POST
+/auth/register
+Register new agency
+Public
+POST
+/auth/refresh
+Refresh access token
+Auth
+GET
+/clients
+List all clients for agency
+Owner/Mana
+ger
+POST
+/clients
+Create new client
+Owner
+GET
+/clients/:id
+Get client details
+Owner/Mana
+ger
+PUT
+/clients/:id
+Update client
+Owner/Mana
+ger
+DELETE
+/clients/:id
+Archive client
+Owner
+POST
+/clients/:id/connect/meta
+Connect Meta Ads account
+Manager
+POST
+/clients/:id/connect/google
+Connect Google Ads account
+Manager
+GET
+/campaigns
+List campaigns with filters
+Manager
+GET
+/campaigns/:id/metrics
+Get campaign daily metrics
+Manager
+POST
+/campaigns/sync
+Trigger manual sync
+Manager
+
+
+--- PAGE 19 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 19
+GET
+/insights/:clientId
+Get AI insights for client
+Manager
+POST
+/insights/:clientId/generate
+Manually trigger AI analysis
+Owner
+PATCH
+/insights/:id/action
+Mark insight as actioned
+Manager
+GET
+/invoices
+List invoices with status filter
+Finance
+POST
+/invoices
+Create invoice manually
+Finance
+POST
+/invoices/:id/send
+Send invoice to client
+Finance
+GET
+/reports/:clientId
+List generated reports
+Manager
+POST
+/reports/:clientId/generate
+Generate report now
+Manager
+GET
+/analytics/revenue
+Agency revenue analytics
+Owner
+GET
+/analytics/health
+Agency health score breakdown
+Owner
+POST
+/webhooks/razorpay
+Razorpay payment webhook
+System
+8.3 Sample API Response — GET /insights/:clientId
+{ "success": true, "data": { "client_id": "uuid-here", "generated_at":
+"2026-03-14T03:00:00Z", "health_score": 79, "insights": [ { "id": "uuid", "type":
+"alert", "severity": "high", "title": "YouTube campaign ROAS below threshold", "body":
+"EdTech campaign is at 2.1x ROAS vs target 3.5x. Suggest pausing and reallocating
+■18,000 to Meta.", "action_taken": false }, { "id": "uuid", "type": "opportunity",
+"severity": "medium", "title": "Instagram campaign ready to scale", "body": "Dental
+campaign showing 91% delivery and 5.1x ROAS. Increasing budget 30% could yield 40+
+leads.", "action_taken": false } ], "forecast": { "projected_revenue_next_month":
+420000, "confidence": 0.82 } } }
+
+
+--- PAGE 20 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 20
+Chapter 9
+Tech Stack — Detailed Justification
+Technology
+Layer
+ Why Chosen
+ 
+Next.js 14 (App Router)
+Frontend
+Framework
+Server components render dashboards in <100ms. Built-in API
+routes eliminate separate BFF. Best-in-class DX with React
+ecosystem.
+JavaScript (ES2022+)
+Language
+No TypeScript — pure JS with JSDoc comments for
+documentation. Faster onboarding for freelance developers in
+India.
+Tailwind CSS
+Styling
+Utility-first CSS eliminates style conflicts. Consistent design
+tokens. Purges unused CSS for tiny bundle.
+Recharts + Chart.js
+Data
+Visualisation
+Recharts for React-native charts (campaign trends), Chart.js
+for complex custom charts (funnel, geo).
+Zustand
+State
+Management
+Lightweight alternative to Redux. No boilerplate. Perfect for
+auth state, client switcher, notification store.
+Node.js 20 LTS
+Backend Runtime
+Async I/O handles 100s of concurrent API sync jobs efficiently.
+Same language as frontend reduces team context switching.
+Express.js
+Backend
+Framework
+Minimal, battle-tested. Middleware ecosystem (helmet, cors,
+rate-limit). Easy to structure into MVC.
+PostgreSQL 16
+Primary
+Database
+ACID compliance for financial data (invoices, payments).
+Generated columns for ROAS/CTR calculations. Superior for
+complex joins.
+Redis 7
+Cache & Queue
+Bull job queue for async jobs. Dashboard data cache (TTL 15
+min). Session store. Pub/sub for real-time notifications.
+Claude API (Sonnet)
+AI Engine
+Best-in-class reasoning for business data analysis. Structured
+JSON output. Handles complex multi-metric campaign
+evaluation.
+Razorpay
+Payments
+Only Indian gateway with native GST invoice API. Supports
+UPI, cards, net banking. Webhook for real-time payment
+status.
+SendGrid
+Email
+Reliable transactional email. Template management. Delivery
+analytics. 100 emails/day free tier sufficient for MVP.
+AWS S3
+File Storage
+PDF report storage, client logos, invoice PDFs. Lifecycle rules
+archive old files cheaply. CDN via CloudFront.
+Vercel
+Frontend Hosting
+Zero-config Next.js deployment. Global CDN. Preview
+deployments per PR. Free tier covers MVP traffic.
+AWS EC2 (t3.medium)
+Backend Hosting
+Mumbai region for low latency. Horizontal scaling with load
+balancer when needed. ~■3,000/month.
+
+
+--- PAGE 21 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 21
+Docker + Docker
+Compose
+Containerisation
+Dev/prod parity. Easy onboarding for new developers. Single
+command to start entire stack locally.
+GitHub Actions
+CI/CD
+Auto-test on PR. Deploy to Vercel (frontend) and EC2
+(backend) on merge to main. Zero manual deployments.
+Sentry
+Error Monitoring
+Real-time error alerts. Stack traces with source maps.
+Performance monitoring. Free tier for 5,000 errors/month.
+
+
+--- PAGE 22 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 22
+Chapter 10
+AI Engine Architecture
+10.1 Prompt Template System
+All AI prompts are stored in promptTemplates.js as structured templates. Each template is
+parameterised with client data and returns a strict JSON schema. This ensures consistent, parseable AI
+output across all insight types.
+// promptTemplates.js function buildInsightPrompt(campaignData, historicalData,
+clientProfile) { return ` You are a senior digital marketing analyst for
+${clientProfile.business_name}, a ${clientProfile.business_type} business in India.
+CURRENT 7-DAY CAMPAIGN PERFORMANCE: ${JSON.stringify(campaignData, null, 2)} HISTORICAL
+30-DAY BASELINE: ${JSON.stringify(historicalData, null, 2)} Return ONLY a JSON object
+with this exact structure: { "health_score": <0-100>, "insights": [ { "type":
+"alert|opportunity|forecast|recommendation", "severity": "low|medium|high|critical",
+"title": "<50 chars", "body": "<200 chars actionable insight", "affected_campaign": "",
+"estimated_impact_inr": } ], "revenue_forecast_next_30_days": ,
+"top_performing_platform": "", "recommended_budget_shift": { "from": "", "to": "",
+"amount_inr": } }`; }
+10.2 AI Job Pipeline
+Step 1 — Trigger
+3:00 AM daily cron OR manual trigger from dashboard
+Step 2 — Data Fetch
+Query PostgreSQL for last 37 days of campaign_metrics per client
+Step 3 — Data Prep
+Calculate 7-day vs 30-day baseline, flag anomalies, build context
+object
+Step 4 — Claude API Call
+Send structured prompt, model: claude-sonnet-4-20250514,
+max_tokens: 2000
+Step 5 — Parse Response
+Strip markdown fences, JSON.parse(), validate against Joi schema
+Step 6 — Store Insights
+Insert into ai_insights table, update client health_score
+Step 7 — Alert Routing
+If severity=critical or high → send email + WhatsApp notification
+Step 8 — Cache Invalidation
+Delete Redis cache key for client dashboard
+10.3 AI Cost Management
+ Scenario
+ Tokens/Client/Day
+Cost/Client/Month
+Cost at 13 Clients
+MVP (basic insights)
+~3,000
+~■120
+~■1,560
+Growth (full analysis)
+~6,000
+~■240
+~■3,120
+
+
+--- PAGE 23 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 23
+Premium (reports + insights)
+~12,000
+~■480
+~■6,240
+At 50 clients (mixed)
+~6,000 avg
+~■240 avg
+~■12,000
+Note: Claude API cost at scale remains under 2% of revenue — highly profitable.
+
+
+--- PAGE 24 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 24
+Chapter 11
+Security & Infrastructure
+11.1 Security Measures
+Authentication
+JWT access tokens (15 min expiry) + refresh tokens (7 days).
+Stored in httpOnly cookies.
+Password Storage
+bcrypt with salt rounds = 12. Never stored in plain text.
+OAuth Token Storage
+Meta/Google tokens encrypted at rest using AES-256 before
+DB storage.
+API Rate Limiting
+express-rate-limit: 100 req/min per user. Prevents brute force
+and API abuse.
+Input Validation
+Joi schema validation on all incoming request bodies. Prevents
+injection attacks.
+SQL Injection
+Parameterised queries via pg library. No raw string
+concatenation in SQL.
+CORS Policy
+Whitelist of allowed origins. Reject all others.
+HTTPS Enforcement
+SSL/TLS on all endpoints. HSTS header. HTTP to HTTPS
+redirect.
+Secrets Management
+All API keys in .env. Never committed to git. AWS Secrets
+Manager in production.
+Client Data Isolation
+All queries filter by agency_id. Clients can only see their own
+data.
+Audit Logging
+All data modifications logged to audit_logs table with user ID
+and timestamp.
+Webhook Verification
+Razorpay webhook signature verified using HMAC-SHA256
+before processing.
+11.2 Infrastructure Topology
+Component
+Service
+ Spec
+ Monthly Cost (INR)
+Frontend
+Vercel Pro
+Global CDN, unlimited bandwidth
+~■1,500
+Backend API
+AWS EC2 t3.medium
+2 vCPU, 4 GB RAM, Mumbai
+~■3,200
+
+
+--- PAGE 25 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 25
+Database
+AWS RDS PostgreSQL
+db.t3.micro, 20 GB SSD
+~■2,800
+Cache / Queue
+AWS ElastiCache Redis
+cache.t3.micro
+~■1,800
+File Storage
+AWS S3
+50 GB storage, 10 GB transfer
+~■400
+Email
+SendGrid Essentials
+50,000 emails/month
+~■1,500
+Monitoring
+Sentry Developer
+Error tracking + performance
+~■1,800
+Domain + SSL
+Route 53 + ACM
+DNS management, free SSL
+~■600
+TOTAL
+~■13,600/month
+
+
+--- PAGE 26 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 26
+Chapter 12
+4-Month Sprint Plan — End to End
+Development
+Duration: 4 months (16 weeks) | Sprint Length: 1 week | Team: 2 Devs + 1 Designer | Methodology:
+Agile Scrum with weekly retrospectives | Tools: GitHub + Notion + Figma
+MONTH 1 — Foundation & Core Infrastructure
+ SPRINT 1 | Project Setup & Architecture | Week 1 (Apr 1–7)
+ 
+Sprint Goals
+ Finalise tech stack decisions
+ Set up development environment
+ Create project repositories
+User Stories & Tasks
+ Initialise Next.js 14 project with App Router and JavaScript
+ Set up Express.js backend with folder structure as per LLD
+ Configure PostgreSQL locally with Docker Compose
+ Set up Redis with Docker
+ Configure ESLint, Prettier, Husky pre-commit hooks
+ Set up GitHub repository with branch protection rules
+ Create .env template with all required environment variables
+ Write README with local setup instructions
+ Set up Vercel project and connect GitHub for auto-deploy
+ Configure AWS EC2 instance and install Node.js 20
+Deliverables
+ Running local dev environment
+ CI/CD pipeline deploying to staging
+ GitHub project board with all tasks
+SPRINT 2 | Authentication & User Management | Week 2 (Apr 8–14)
+Sprint Goals
+ Complete auth system with JWT
+ Role-based access control
+
+
+--- PAGE 27 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 27
+ Agency onboarding flow
+User Stories & Tasks
+ POST /auth/register — agency registration with email verification
+ POST /auth/login — returns JWT access + refresh tokens
+ POST /auth/refresh — token rotation
+ JWT middleware for all protected routes
+ Role enum: owner, manager, finance, viewer
+ Users table and agencies table schema + migrations
+ Login page UI with form validation
+ Register page UI with plan selection
+ Protected route wrapper component (frontend)
+ Zustand auth store with persist middleware
+ Password reset flow via email (SendGrid)
+Deliverables
+ Working login/register
+ JWT auth on all API routes
+ Role-based UI visibility
+SPRINT 3 | Database Schema & Client Module | Week 3 (Apr 15–21)
+Sprint Goals
+ Complete DB schema implementation
+ Client CRUD operations
+ Client list dashboard
+User Stories & Tasks
+ Run all PostgreSQL migrations (all tables from schema chapter)
+ Seed database with test data (3 mock clients)
+ GET/POST/PUT/DELETE /clients endpoints
+ Client list page with search, filter, sort
+ Client detail page with tabs (Overview, Campaigns, Invoices, Reports)
+ Add client form with all fields (business type, plan, GST etc.)
+ Client health score calculation function
+ Prisma ORM setup with all models (or raw pg queries)
+ API response pagination middleware
+ Unit tests for client service functions
+Deliverables
+ Full client CRUD working
+
+
+--- PAGE 28 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 28
+ Client list and detail pages
+ DB schema complete and tested
+ SPRINT 4 | Main Dashboard & UI System | Week 4 (Apr 22–30)
+ 
+Sprint Goals
+ Build component library
+ Main agency dashboard
+ KPI metric cards
+User Stories & Tasks
+ Design system: Button, Card, Modal, Table, Badge, Input components
+ Sidebar navigation with active state management
+ Topbar with client switcher dropdown
+ KPI metric cards: Revenue, Clients, Campaigns, ROAS
+ Agency health score widget
+ Notification bell with dropdown
+ Responsive layout (mobile-first)
+ Dark/light mode toggle
+ Loading skeletons for all async data
+ Error boundary components
+ Tailwind CSS configuration with brand colours
+Deliverables
+ Complete UI component library
+ Main dashboard rendering with mock data
+ Mobile responsive layout
+
+
+--- PAGE 29 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 29
+MONTH 2 — Integrations & Campaign Tracker
+ SPRINT 5 | Meta Ads Integration | Week 5 (May 1–7)
+ 
+Sprint Goals
+ OAuth flow for Meta Ads
+ Pull campaign data
+ Store in DB
+User Stories & Tasks
+ Meta App setup in Facebook Developer Console
+ OAuth 2.0 flow: POST /clients/:id/connect/meta
+ metaAds.js integration module with axios
+ Fetch campaigns, ad sets, ads for connected account
+ Fetch daily metrics: spend, reach, impressions, clicks, conversions
+ Normalise Meta response to canonical campaign_metrics schema
+ Store in campaign_metrics table with upsert logic
+ Handle Meta API rate limits with exponential backoff
+ Token refresh logic when Meta token expires
+ Campaign list UI showing Meta campaigns
+Deliverables
+ Meta Ads connected and syncing
+ Campaign data visible in dashboard
+ Rate limit handling tested
+ SPRINT 6 | Google Ads + GA4 Integration | Week 6 (May 8–14)
+ 
+Sprint Goals
+ Google Ads API connection
+ GA4 data pull
+ Unified campaign view
+User Stories & Tasks
+ Google Cloud project setup with Ads API and Analytics enabled
+ OAuth flow for Google: POST /clients/:id/connect/google
+ googleAds.js — fetch campaigns, ad groups, keywords, metrics
+ ga4.js — fetch sessions, bounce rate, goal completions, revenue
+ Google Search Console API integration for SEO data
+ Normalise Google data to canonical schema
+
+
+--- PAGE 30 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 30
+ Campaign Tracker page — combined Meta + Google campaigns table
+ Platform filter tabs (All / Meta / Google / SEO)
+ Date range picker (7D / 30D / 90D / Custom)
+ Campaign performance bar charts using Recharts
+ ROAS colour coding: red <2.5x, amber 2.5–4x, green >4x
+Deliverables
+ Google Ads and GA4 syncing
+ Unified campaign tracker page
+ Cross-platform performance view
+SPRINT 7 | Automated Sync Jobs & Cron System | Week 7 (May 15–21)
+Sprint Goals
+ Bull job queue setup
+ Daily sync automation
+ Error handling & retry
+User Stories & Tasks
+ Bull queue setup with Redis as backend
+ syncCampaigns.job.js — daily 2 AM cron for all active clients
+ Job progress tracking and logging
+ Failed job retry with exponential backoff (max 3 attempts)
+ Dead letter queue for persistently failing jobs
+ Manual sync trigger: POST /campaigns/sync
+ Last synced timestamp shown in UI per platform
+ Sync status indicator in client dashboard
+ Email alert when sync fails 3 times consecutively
+ Job monitoring dashboard (admin only) using Bull Board
+Deliverables
+ Automated daily sync running
+ Manual sync working
+ Failed sync alerts operational
+ SPRINT 8 | Campaign Analytics & Charts | Week 8 (May 22–31)
+Sprint Goals
+ Deep campaign analytics
+ Historical trend charts
+
+
+--- PAGE 31 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 31
+ Performance comparisons
+User Stories & Tasks
+ GET /campaigns/:id/metrics — daily metrics for date range
+ Line chart: spend trend over time (Recharts)
+ Bar chart: ROAS by platform comparison
+ Conversion funnel chart (impressions → clicks → conversions)
+ Campaign detail modal with full metrics breakdown
+ Top campaigns table sorted by ROAS
+ Budget utilisation progress bars with pacing alerts
+ Export campaign data to CSV
+ Campaign status toggle (active/paused) — write back to Meta/Google API
+ A/B test comparison view (two campaigns side by side)
+Deliverables
+ Full campaign analytics page
+ All charts rendering with real data
+ CSV export working
+
+
+--- PAGE 32 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 32
+MONTH 3 — AI Engine, Invoicing & Reporting
+SPRINT 9 | Claude AI Integration & Insights Engine | Week 9 (Jun 1–7)
+Sprint Goals
+ Claude API integration
+ Insight generation pipeline
+ Insight display UI
+User Stories & Tasks
+ Install @anthropic-ai/sdk in backend
+ aiService.js with generateClientInsights function
+ promptTemplates.js with parameterised prompt builder
+ Joi schema validation for AI JSON response
+ ai_insights table population from AI output
+ runAIAnalysis.job.js — nightly 3 AM cron
+ GET /insights/:clientId endpoint
+ AI Insights page with insight cards by type
+ Severity colour coding: critical=red, high=orange, medium=amber, low=green
+ Mark as actioned button per insight
+ Dismiss insight functionality
+ Health score widget updated from AI output
+Deliverables
+ AI insights generating nightly
+ Insights page showing real AI output
+ Health score updating
+ SPRINT 10 | AI Alerts & Forecasting | Week 10 (Jun 8–14)
+ 
+Sprint Goals
+ Real-time alerts system
+ Revenue forecasting
+ Budget recommendations
+User Stories & Tasks
+ Notification model and API: GET /notifications
+ Alert routing: critical/high insights → email + WhatsApp
+ WhatsApp integration via 360dialog API (whatsappService.js)
+ Revenue forecast widget on dashboard
+
+
+--- PAGE 33 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 33
+ POST /insights/:clientId/generate — manual trigger
+ Budget reallocation recommendation card with approve/dismiss
+ Content idea generator prompt template
+ AI-suggested ad copy generation (on demand)
+ Competitor gap analysis prompt (SEO keywords)
+ Insight history view — past 30 days of insights per client
+ Notification bell with unread count badge
+Deliverables
+ Alert system sending emails/WhatsApp
+ Forecast widget on dashboard
+ On-demand AI tools working
+ SPRINT 11 | Invoicing & Payment System | Week 11 (Jun 15–21)
+Sprint Goals
+ Razorpay integration
+ Invoice generation
+ Payment tracking
+User Stories & Tasks
+ Razorpay account setup and API key configuration
+ invoiceService.js with createMonthlyInvoice function
+ invoices and payments table fully operational
+ Auto invoice number generation (INV-YYYY-MM-NNN)
+ GST calculation (18% on service amount)
+ PDF invoice generation via Puppeteer
+ PDF upload to AWS S3
+ POST /invoices — create invoice manually
+ POST /invoices/:id/send — send to client email
+ Razorpay webhook: POST /webhooks/razorpay — update payment status
+ Invoicing page with status filter tabs (All/Paid/Pending/Overdue)
+ Overdue detection cron — checks daily at 9 AM
+ Overdue reminder email at 7 and 14 days
+ Payment status badge in client detail page
+Deliverables
+ Invoice creation and sending
+ Razorpay payment working end-to-end
+ Overdue reminders automated
+
+
+--- PAGE 34 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 34
+SPRINT 12 | Report Generation & Client Portal | Week 12 (Jun 22–30)
+Sprint Goals
+ Auto PDF report generation
+ Scheduled delivery
+ Client read-only portal
+User Stories & Tasks
+ reportService.js — compiles metrics + AI narrative into report data
+ Puppeteer HTML-to-PDF with white-label branding
+ Report template with: KPI summary, campaign table, AI insights, charts
+ S3 upload and signed URL generation for downloads
+ generateReports.job.js — Monday 8 AM cron
+ GET /reports/:clientId — list all reports with download links
+ POST /reports/:clientId/generate — on-demand report
+ Email delivery via SendGrid with PDF attachment
+ WhatsApp weekly summary (top 3 KPIs as text)
+ Client portal: /client-portal/[token] — read-only dashboard
+ Client portal shows only their own data (no agency financials)
+ Magic link authentication for client portal (no password needed)
+Deliverables
+ Weekly reports auto-generating and emailing
+ Client portal accessible
+ PDF downloads working
+
+
+--- PAGE 35 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 35
+MONTH 4 — SEO, CRM, Polish & Launch
+SPRINT 13 | SEO Tracker & Social Media Module | Week 13 (Jul 1–7)
+Sprint Goals
+ SEO keyword tracking
+ Social media analytics
+ Content calendar
+User Stories & Tasks
+ SEMrush API integration for keyword position tracking
+ seo_keywords and seo_rankings tables
+ GET /seo/:clientId/keywords — list tracked keywords with positions
+ POST /seo/:clientId/keywords — add new keywords to track
+ Weekly keyword position sync job
+ SEO health score based on top-10 keyword ratio
+ SEO trend chart: position over 90 days
+ Google Search Console — clicks and impressions integration
+ Instagram Graph API — post reach, engagement, follower growth
+ Social media analytics page with post performance table
+ Content calendar UI (week view, drag-and-drop post scheduling)
+ Best time to post widget (AI-powered recommendation)
+Deliverables
+ SEO tracking live for all clients
+ Social analytics page working
+ Content calendar functional
+SPRINT 14 | CRM Module & Team Management | Week 14 (Jul 8–14)
+Sprint Goals
+ Full client CRM
+ Team task management
+ Communication logs
+User Stories & Tasks
+ Communication log table: calls, emails, WhatsApp notes per client
+ Add communication entry form (type, date, notes, outcome)
+ Client timeline view — all interactions in chronological order
+ Task board (Kanban): To Do / In Progress / Done per client
+
+
+--- PAGE 36 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 36
+ Task assignment to team members
+ Due date alerts for tasks
+ Contract renewal alert: 30/15/7 days before expiry
+ Team members management page (invite, role assign, deactivate)
+ Activity feed: recent actions across all clients
+ Client satisfaction score (manual 1–5 rating per review call)
+ Client notes rich text editor
+Deliverables
+ CRM module fully functional
+ Task management working
+ Team management operational
+ SPRINT 15 | Revenue Analytics & Testing | Week 15 (Jul 15–21)
+Sprint Goals
+ Revenue analytics dashboard
+ Full QA testing
+ Performance optimisation
+User Stories & Tasks
+ GET /analytics/revenue — MRR, ARR, growth rate, churn rate
+ Revenue trend chart: 12-month MRR line chart
+ Revenue breakdown by plan (Starter/Growth/Premium)
+ Client LTV calculation and display
+ Churn risk scoring (clients with declining health score)
+ P&L; summary: revenue vs operational costs
+ End-to-end testing of all critical user flows
+ Load testing: simulate 50 concurrent dashboard users
+ Redis cache hit rate optimisation (target >80%)
+ Database query optimisation (add indexes on frequently queried columns)
+ Image optimisation and lazy loading
+ Lighthouse score target: Performance >90, Accessibility >95
+ Cross-browser testing: Chrome, Firefox, Safari, Edge
+Deliverables
+ Revenue analytics dashboard live
+ All tests passing
+ Performance targets met
+
+
+--- PAGE 37 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 37
+ SPRINT 16 | Production Launch & Go-Live | Week 16 (Jul 22–31)
+Sprint Goals
+ Production deployment
+ First client onboarding
+ Monitoring setup
+User Stories & Tasks
+ Production environment setup on AWS (EC2, RDS, ElastiCache, S3)
+ Environment variables secured in AWS Secrets Manager
+ SSL certificate setup via AWS ACM
+ Domain configuration: growiq.in + api.growiq.in
+ Sentry error monitoring configured for production
+ CloudWatch alarms: CPU >80%, memory >85%, error rate >1%
+ Database backup strategy: daily automated RDS snapshots
+ Onboard first 2 paying clients (manually guided)
+ Verify all integrations work with real client ad accounts
+ Verify invoice generation and Razorpay payment end-to-end
+ Create user documentation / help articles
+ Record video walkthrough for client onboarding
+ Set up customer support email and response SLA
+ Post-launch monitoring for 72 hours
+Deliverables
+ Platform live on production
+ First 2 clients onboarded
+ Monitoring and alerts active
+
+
+--- PAGE 38 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 38
+Chapter 13
+Team Structure & Development Cost
+13.1 Core Development Team
+Role
+Skills Required
+ Responsibility
+ Cost/Month
+Full Stack
+Developer
+Next.js, Node.js, PostgreSQL,
+Redis, AWS
+Frontend + Backend core, API
+integrations, DB schema
+■40,000–■60,00
+0
+AI / Backend
+Developer
+Node.js, Claude API,
+LangChain, Cron, Bull
+AI engine, job queues, report
+generation, WhatsApp
+■35,000–■50,00
+0
+UI/UX Designer
+Figma, Tailwind CSS, React,
+data visualisation
+Design system, all pages, charts,
+mobile responsive
+■25,000–■35,00
+0
+You (Founder)
+Product, sales, client
+management, strategy
+Requirements, client onboarding,
+QA, business decisions
+Sweat equity
+13.2 Total Development Budget
+ Item
+ Month 1
+Month 2
+Month 3
+Month 4
+Total
+Developer salaries (2)
+■90K
+■90K
+■90K
+■90K
+■3,60,000
+Designer salary
+■30K
+■30K
+■30K
+■30K
+■1,20,000
+Infrastructure (staging)
+■5K
+■8K
+■10K
+■14K
+■37,000
+API costs (Claude +
+others)
+■2K
+■4K
+■6K
+■8K
+■20,000
+Tools (Figma, GitHub,
+etc.)
+■3K
+■3K
+■3K
+■3K
+■12,000
+Miscellaneous
+■5K
+■5K
+■5K
+■5K
+■20,000
+TOTAL
+■1,35,000
+■1,40,000
+■1,44,000
+■1,50,000
+■5,69,000
+Total 4-month build cost: ~■5.7 Lakhs. Recovered in just 2 months at ■4L+ monthly revenue target.
+
+
+--- PAGE 39 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 39
+Chapter 14
+Go-To-Market Strategy
+14.1 Target Segments (Priority Order)
+Priority
+Segment
+Market Size
+ Why They Need GrowIQ
+ 
+1
+Digital Marketing
+Agencies
+80,000+ in India
+Buy platform for all clients — highest LTV
+2
+Restaurant / Cloud
+Kitchen Chains
+500,000+ outlets
+High ad spend, need ROI proof to continue
+3
+Real Estate Developers /
+Agents
+200,000+ agents
+High ticket value, willing to pay for leads
+4
+Healthcare — Clinics /
+Hospitals
+100,000+ private
+clinics
+Need patient acquisition tracking
+5
+EdTech / Coaching
+Institutes
+50,000+ institutes
+Heavy digital ad spenders, ROI-focused
+14.2 Acquisition Channels
+Channel
+ Strategy
+ Cost
+Timeline
+LinkedIn Outreach
+Target agency owners and marketing managers.
+20 personalised DMs/day.
+■0 (time only)
+Month 1–2
+Instagram Content
+Post marketing tips, campaign screenshots
+(anonymised), results proof.
+■0
+Ongoing
+Facebook/Google
+Ads
+Target "digital marketing agency India" keywords.
+■10,000/month ad spend.
+■10,000/month
+Month 3+
+Referral Programme
+Existing clients refer new clients → 1 month free
+for referrer.
+Revenue share
+Month 3+
+Partnership — CA
+Firms
+CAs recommend GrowIQ to their SMB clients for
+marketing ROI tracking.
+Revenue share
+Month 4+
+YouTube Channel
+Tutorial videos: "How to check if your agency is
+wasting your ad budget"
+■0
+Month 2+
+
+
+--- PAGE 40 ---
+GrowIQ — Complete Project Document  |  Confidential
+Page 40
+Chapter 15
+Risk Register
+ID
+ Risk
+ Impact
+Probability
+ Mitigation
+ 
+R-01
+Meta/Google API breaking
+changes
+High
+Medium
+Monitor API changelogs, version-lock
+integrations, automated integration tests
+R-02
+Slow client onboarding
+(OAuth friction)
+High
+High
+Create guided onboarding video, offer
+white-glove setup service for first clients
+R-03
+Claude API cost overrun at
+scale
+Medium
+Low
+Implement response caching, batch
+processing, tiered prompting by plan
+R-04
+Data security breach
+Critical
+Low
+Encrypt OAuth tokens, penetration testing
+before launch, SOC2 roadmap
+R-05
+Developer leaving
+mid-project
+High
+Medium
+Code documentation standards, pair
+programming, no single point of knowledge
+R-06
+Client churn due to unclear
+ROI
+High
+Medium
+Weekly reports with clear ROI callouts,
+monthly review call template
+R-07
+Razorpay integration issues
+Medium
+Low
+Test all payment flows in staging, maintain
+manual invoice backup process
+R-08
+Competition from
+HubSpot/Zoho
+Medium
+High
+Focus on India-specific features
+(WhatsApp, GST), price 5x lower than
+enterprise tools
+R-09
+Infrastructure downtime
+High
+Low
+Multi-AZ RDS, health checks, auto-restart
+on EC2, status page for clients
+R-10
+Scope creep during
+development
+High
+High
+Strict sprint scope, backlog grooming,
+MVP-first approach
+This document is the complete blueprint for building GrowIQ from scratch to a ■4+ lakh/month recurring
+revenue business. Follow the sprint plan, maintain the architecture standards, and execute the
+go-to-market strategy — success follows.
+ GrowIQ · Version 1.0 · March 2026 · Confidential & Proprietary
+ 

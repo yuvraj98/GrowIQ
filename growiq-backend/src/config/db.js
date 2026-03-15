@@ -12,14 +12,16 @@ const poolConfig = process.env.DATABASE_URL
         database: env.DB_NAME,
         user: env.DB_USER,
         password: env.DB_PASSWORD,
+        ssl: env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
     };
 
-poolConfig.max = 20;
+// Ensure basic timeout settings
+poolConfig.max = env.NODE_ENV === 'production' ? 10 : 20;
 poolConfig.idleTimeoutMillis = 30000;
-poolConfig.connectionTimeoutMillis = 5000;
+poolConfig.connectionTimeoutMillis = 10000;
 
-// Required for cloud databases like Supabase or Neon to prevent connection drops in production environments
-if (env.NODE_ENV === 'production' || (env.DB_HOST && env.DB_HOST.includes('supabase.co')) || process.env.DATABASE_URL) {
+// Add SSL for connection strings in production if not already present in the string
+if (process.env.DATABASE_URL && env.NODE_ENV === 'production' && !process.env.DATABASE_URL.includes('sslmode=')) {
     poolConfig.ssl = { rejectUnauthorized: false };
 }
 

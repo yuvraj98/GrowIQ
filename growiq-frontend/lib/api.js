@@ -2,7 +2,9 @@
 // Axios instance with interceptors for DMTrack API
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
+const rawApiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
+const cleanApiUrl = rawApiUrl.replace(/\/$/, '');
+const API_BASE_URL = cleanApiUrl.endsWith('/api/v1') ? cleanApiUrl : `${cleanApiUrl}/api/v1`;
 
 const api = axios.create({
     baseURL: API_BASE_URL,

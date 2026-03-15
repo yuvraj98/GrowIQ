@@ -8,8 +8,7 @@
     "dev": "nodemon src/server.js",
     "lint": "eslint src/",
     "format": "prettier --write src/",
-    "test": "echo \"Tests coming in Sprint 15\" && exit 0",
-    "prepare": "husky"
+    "test": "echo \"Tests coming in Sprint 15\" && exit 0"
   },
   "keywords": [
     "dmtrack",

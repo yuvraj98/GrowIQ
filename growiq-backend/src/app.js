@@ -70,6 +70,16 @@ app.use('/api/v1', apiLimiter);
 // ─── Static Files (local dev — replaces S3) ─────────────────
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
+// ─── Root Route ─────────────────────────────────────────────
+app.get('/', (req, res) => {
+    res.json({
+        success: true,
+        message: 'Welcome to the DMTrack API. The server is running successfully.',
+        documentation: '/api/v1',
+        healthCheck: '/health'
+    });
+});
+
 // ─── Health Check ───────────────────────────────────────────
 app.get('/health', (req, res) => {
     res.json({

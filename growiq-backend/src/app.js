@@ -81,11 +81,21 @@ app.get('/', (req, res) => {
 });
 
 // ─── Health Check ───────────────────────────────────────────
-app.get('/health', (req, res) => {
+app.get('/health', async (req, res) => {
+    let dbStatus = 'disconnected';
+    try {
+        const { query } = require('./config/db');
+        await query('SELECT 1');
+        dbStatus = 'connected';
+    } catch (err) {
+        dbStatus = `error: ${err.message}`;
+    }
+
     res.json({
-        success: true,
+        success: dbStatus === 'connected',
         data: {
-            status: 'healthy',
+            status: dbStatus === 'connected' ? 'healthy' : 'degraded',
+            database: dbStatus,
             service: 'DMTrack API',
             version: '1.0.0',
             environment: env.NODE_ENV,

@@ -115,17 +115,17 @@ export default function InsightsPage() {
                 {/* Filters */}
                 <div className="flex items-center justify-between mb-8">
                     <div className="flex flex-wrap gap-2">
-                         <div className="p-1 rounded-xl bg-white/5 border border-white/10 flex flex-wrap gap-1 text-sm">
+                         <div className="p-1 rounded-xl bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex flex-wrap gap-1 text-sm">
                             <button 
                                 onClick={() => setSelectedClient('')}
-                                className={`px-4 py-1.5 rounded-lg transition-colors ${!selectedClient ? 'bg-white/10 text-white font-medium' : 'text-gray-400 hover:text-white'}`}
+                                className={`px-4 py-1.5 rounded-lg transition-colors ${!selectedClient ? 'bg-white/10 text-slate-900 dark:text-white font-medium' : 'text-gray-600 dark:text-gray-400 hover:text-slate-900 dark:text-white'}`}
                             >
                                 All Clients
                             </button>
                             {clients.map(c => (
                                 <button 
                                     key={c.id} onClick={() => setSelectedClient(c.id)}
-                                    className={`px-4 py-1.5 rounded-lg transition-colors ${selectedClient === c.id ? 'bg-white/10 text-white font-medium' : 'text-gray-400 hover:text-white'}`}
+                                    className={`px-4 py-1.5 rounded-lg transition-colors ${selectedClient === c.id ? 'bg-white/10 text-slate-900 dark:text-white font-medium' : 'text-gray-600 dark:text-gray-400 hover:text-slate-900 dark:text-white'}`}
                                 >
                                     {c.business_name}
                                 </button>
@@ -139,9 +139,9 @@ export default function InsightsPage() {
                         <div className="w-8 h-8 border-4 border-violet-500/30 border-t-violet-500 rounded-full animate-spin" />
                     </div>
                 ) : insights.length === 0 ? (
-                    <div className="text-center py-24 rounded-3xl border border-dashed border-white/10 bg-white/[0.01]">
+                    <div className="text-center py-24 rounded-3xl border border-dashed border-gray-200 dark:border-white/10 bg-white/[0.01]">
                         <Brain className="w-16 h-16 text-gray-700 mx-auto mb-4" />
-                        <h3 className="text-xl font-semibold text-white mb-2">No Active Intelligence</h3>
+                        <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">No Active Intelligence</h3>
                         <p className="text-gray-500 max-w-sm mx-auto text-sm">
                             The AI engine has not generated any recent insights for this selection. 
                             Click "Run Engine" to force a deep scan of active metrics.
@@ -152,7 +152,7 @@ export default function InsightsPage() {
                         {insights.map(insight => (
                             <div 
                                 key={insight.id} 
-                                className={`p-6 rounded-2xl border ${insight.is_actioned ? 'border-white/5 bg-white/[0.02] opacity-60 grayscale' : BORDERS[insight.type] || BORDERS.recommendation} transition-all relative overflow-hidden group`}
+                                className={`p-6 rounded-2xl border ${insight.is_actioned ? 'border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] opacity-60 grayscale' : BORDERS[insight.type] || BORDERS.recommendation} transition-all relative overflow-hidden group`}
                             >
                                 {/* Decorative gradient blob */}
                                 <div className="absolute -top-24 -right-24 w-48 h-48 bg-white/5 blur-3xl rounded-full pointer-events-none" />
@@ -168,7 +168,7 @@ export default function InsightsPage() {
                                                     <span className={`text-[10px] px-2 py-0.5 rounded-full border uppercase tracking-wider font-bold ${
                                                         insight.severity === 'critical' ? 'bg-red-500/10 text-red-400 border-red-500/20' :
                                                         insight.severity === 'high' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' :
-                                                        'bg-gray-500/10 text-gray-400 border-gray-500/20'
+                                                        'bg-gray-500/10 text-gray-600 dark:text-gray-400 border-gray-500/20'
                                                     }`}>
                                                         {insight.severity}
                                                     </span>
@@ -182,7 +182,7 @@ export default function InsightsPage() {
                                                         </>
                                                     )}
                                                 </div>
-                                                <h3 className={`text-lg font-semibold ${insight.is_actioned ? 'text-gray-400' : 'text-white'}`}>
+                                                <h3 className={`text-lg font-semibold ${insight.is_actioned ? 'text-gray-600 dark:text-gray-400' : 'text-slate-900 dark:text-white'}`}>
                                                     {insight.title}
                                                 </h3>
                                             </div>
@@ -191,14 +191,14 @@ export default function InsightsPage() {
                                             </span>
                                         </div>
                                         
-                                        <p className="text-sm text-gray-400 mt-2 leading-relaxed">
+                                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 leading-relaxed">
                                             {insight.description}
                                         </p>
 
                                         {/* Actionable Content based on data */}
                                         {insight.data?.campaignId && !insight.is_actioned && (
                                             <Link href={`/dashboard/campaigns/${insight.data.campaignId}`} 
-                                                className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900 border border-white/10 text-sm text-white hover:bg-white/5 transition-colors">
+                                                className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-white/10 text-sm text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                                                 <Activity className="w-4 h-4 text-violet-400" />
                                                 Review Campaign
                                                 <ArrowRight className="w-4 h-4 ml-1" />
@@ -206,7 +206,7 @@ export default function InsightsPage() {
                                         )}
 
                                         {!insight.is_actioned && (
-                                            <div className="mt-5 pt-5 border-t border-white/5 flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <div className="mt-5 pt-5 border-t border-gray-200 dark:border-white/5 flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
                                                 <button onClick={() => handleDismiss(insight.id)} className="text-xs text-gray-500 hover:text-red-400 transition-colors">
                                                     Dismiss
                                                 </button>

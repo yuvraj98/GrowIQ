@@ -115,14 +115,14 @@ export default function SettingsPage() {
 
             <div className="flex flex-1 overflow-hidden">
                 {/* Sidebar Tabs */}
-                <div className="w-56 border-r border-white/5 p-4 flex flex-col gap-1 shrink-0">
+                <div className="w-56 border-r border-gray-200 dark:border-white/5 p-4 flex flex-col gap-1 shrink-0">
                     {TABS.map(tab => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all w-full text-left ${activeTab === tab.id
                                 ? 'bg-violet-500/10 text-violet-400 font-medium'
-                                : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'
+                                : 'text-gray-500 hover:text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5'
                             }`}
                         >
                             <tab.icon className="w-4 h-4" />
@@ -138,27 +138,27 @@ export default function SettingsPage() {
                     {activeTab === 'profile' && (
                         <div className="max-w-2xl space-y-6">
                             <div>
-                                <h2 className="text-base font-semibold text-white mb-1">Agency Profile</h2>
+                                <h2 className="text-base font-semibold text-slate-900 dark:text-white mb-1">Agency Profile</h2>
                                 <p className="text-sm text-gray-500">This info appears on reports and invoices.</p>
                             </div>
 
                             {/* Avatar */}
-                            <div className="flex items-center gap-5 p-5 rounded-2xl border border-white/5 bg-white/[0.02]">
+                            <div className="flex items-center gap-5 p-5 rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02]">
                                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-2xl font-bold text-white shadow-lg shadow-violet-500/20">
                                     {getInitials(user?.name)}
                                 </div>
                                 <div>
-                                    <p className="text-white font-medium">{user?.name}</p>
+                                    <p className="text-slate-900 dark:text-white font-medium">{user?.name}</p>
                                     <p className="text-sm text-gray-500 capitalize">{user?.role} · {user?.email}</p>
                                 </div>
                             </div>
 
                             {/* Agency Form */}
-                            <div className="p-5 rounded-2xl border border-white/5 bg-white/[0.02] space-y-4">
+                            <div className="p-5 rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] space-y-4">
                                 <div className="flex items-center justify-between mb-2">
-                                    <h3 className="text-sm font-medium text-gray-300">Agency Details</h3>
+                                    <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Agency Details</h3>
                                     <button onClick={() => setEditingAgency(!editingAgency)}
-                                        className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors">
+                                        className="flex items-center gap-1.5 text-xs text-gray-600 dark:text-gray-400 hover:text-slate-900 dark:text-white transition-colors">
                                         <Edit2 className="w-3 h-3" />
                                         {editingAgency ? 'Cancel' : 'Edit'}
                                     </button>
@@ -174,11 +174,11 @@ export default function SettingsPage() {
                                         {editingAgency ? (
                                             <input value={agencyForm[f.key]} onChange={e => setAgencyForm({ ...agencyForm, [f.key]: e.target.value })}
                                                 placeholder={f.placeholder}
-                                                className="flex-1 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" />
+                                                className="flex-1 px-3 py-2 rounded-lg bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" />
                                         ) : (
                                             <div className="flex-1">
                                                 <span className="text-xs text-gray-600">{f.label}</span>
-                                                <p className="text-sm text-gray-300">{agencyForm[f.key] || <span className="text-gray-600 italic">Not set</span>}</p>
+                                                <p className="text-sm text-gray-700 dark:text-gray-300">{agencyForm[f.key] || <span className="text-gray-600 italic">Not set</span>}</p>
                                             </div>
                                         )}
                                     </div>
@@ -198,7 +198,7 @@ export default function SettingsPage() {
                         <div className="max-w-3xl space-y-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <h2 className="text-base font-semibold text-white mb-1">Platform Integration Guide</h2>
+                                    <h2 className="text-base font-semibold text-slate-900 dark:text-white mb-1">Platform Integration Guide</h2>
                                     <p className="text-sm text-gray-500">View connection status across all clients. Connect platforms per-client from their detail page.</p>
                                 </div>
                                 <div className="px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-sm font-medium">
@@ -217,13 +217,13 @@ export default function SettingsPage() {
                                     const connectedForThis = allConnectedForPlatform.filter(i => i.status === 'connected').length;
 
                                     return (
-                                        <div key={key} className="rounded-2xl border border-white/5 bg-white/[0.02] p-5 hover:bg-white/[0.03] transition-colors">
+                                        <div key={key} className="rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] p-5 hover:bg-gray-100 dark:hover:bg-white/[0.03] transition-colors">
                                             <div className="flex items-center gap-3 mb-3">
                                                 <div className={`w-10 h-10 rounded-xl ${info.bg} flex items-center justify-center text-lg`}>
                                                     {info.icon}
                                                 </div>
                                                 <div>
-                                                    <p className="text-sm font-medium text-white">{info.label}</p>
+                                                    <p className="text-sm font-medium text-slate-900 dark:text-white">{info.label}</p>
                                                     <p className="text-xs text-gray-500">{info.desc}</p>
                                                 </div>
                                             </div>
@@ -235,7 +235,7 @@ export default function SettingsPage() {
                                                 ) : (
                                                     allConnectedForPlatform.map(({ clientName, status }) => (
                                                         <div key={clientName} className="flex items-center justify-between">
-                                                            <span className="text-xs text-gray-400 truncate">{clientName}</span>
+                                                            <span className="text-xs text-gray-600 dark:text-gray-400 truncate">{clientName}</span>
                                                             {status === 'connected'
                                                                 ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                                                                 : status === 'error'
@@ -245,7 +245,7 @@ export default function SettingsPage() {
                                                     ))
                                                 )}
                                             </div>
-                                            <div className="mt-3 pt-3 border-t border-white/5 text-xs text-gray-500">
+                                            <div className="mt-3 pt-3 border-t border-gray-200 dark:border-white/5 text-xs text-gray-500">
                                                 {connectedForThis} of {clients.length} clients connected
                                             </div>
                                         </div>
@@ -268,7 +268,7 @@ export default function SettingsPage() {
                         <div className="max-w-2xl space-y-6">
                             <div className="flex items-start justify-between">
                                 <div>
-                                    <h2 className="text-base font-semibold text-white mb-1">Team Members</h2>
+                                    <h2 className="text-base font-semibold text-slate-900 dark:text-white mb-1">Team Members</h2>
                                     <p className="text-sm text-gray-500">Manage who has access to your agency's client data.</p>
                                 </div>
                                 {user?.role === 'owner' && (
@@ -282,33 +282,33 @@ export default function SettingsPage() {
                                 <form onSubmit={handleInvite} className="p-5 rounded-2xl border border-violet-500/30 bg-violet-500/5 space-y-4">
                                     <h3 className="text-sm font-medium text-violet-300">Invite New User</h3>
                                     <div className="grid grid-cols-2 gap-4">
-                                        <input required placeholder="Full Name" value={inviteForm.name} onChange={e => setInviteForm({...inviteForm, name: e.target.value})} className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" />
-                                        <input required type="email" placeholder="Email Address" value={inviteForm.email} onChange={e => setInviteForm({...inviteForm, email: e.target.value})} className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" />
+                                        <input required placeholder="Full Name" value={inviteForm.name} onChange={e => setInviteForm({...inviteForm, name: e.target.value})} className="px-3 py-2 rounded-lg bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" />
+                                        <input required type="email" placeholder="Email Address" value={inviteForm.email} onChange={e => setInviteForm({...inviteForm, email: e.target.value})} className="px-3 py-2 rounded-lg bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" />
                                     </div>
                                     <div className="flex items-center gap-4">
-                                        <select value={inviteForm.role} onChange={e => setInviteForm({...inviteForm, role: e.target.value})} className="flex-1 px-3 py-2 rounded-lg bg-[#2A2A35] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50">
+                                        <select value={inviteForm.role} onChange={e => setInviteForm({...inviteForm, role: e.target.value})} className="flex-1 px-3 py-2 rounded-lg bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50">
                                             <option value="manager">Manager (Full Access)</option>
                                             <option value="finance">Finance (Invoicing & Billing)</option>
                                             <option value="viewer">Viewer (Read Only)</option>
                                         </select>
-                                        <button type="submit" className="px-6 py-2 rounded-lg bg-white text-black font-medium text-sm hover:bg-gray-100 transition-colors">
+                                        <button type="submit" className="px-6 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-medium text-sm hover:from-violet-500 hover:to-indigo-500 active:scale-[0.97] transition-all shadow-lg shadow-violet-500/20">
                                             Send Invite
                                         </button>
                                     </div>
                                 </form>
                             )}
 
-                            <div className="rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden">
+                            <div className="rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] overflow-hidden">
                                 {loadingTeam ? (
                                     <div className="p-10 text-center"><div className="w-6 h-6 border-2 border-violet-500/30 border-t-violet-500 rounded-full animate-spin mx-auto" /></div>
                                 ) : teamMembers.map((member, index) => (
-                                    <div key={member.id} className={`flex items-center justify-between p-4 ${index !== teamMembers.length - 1 ? 'border-b border-white/5' : ''}`}>
+                                    <div key={member.id} className={`flex items-center justify-between p-4 ${index !== teamMembers.length - 1 ? 'border-b border-gray-200 dark:border-white/5' : ''}`}>
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-sm font-bold text-white shadow-inner">
                                                 {getInitials(member.name)}
                                             </div>
                                             <div>
-                                                <p className="text-sm font-medium text-white flex items-center gap-2">
+                                                <p className="text-sm font-medium text-slate-900 dark:text-white flex items-center gap-2">
                                                     {member.name} {user?.id === member.id && <span className="text-[10px] text-violet-400 bg-violet-500/10 px-1.5 py-0.5 rounded uppercase font-bold tracking-wider">You</span>}
                                                 </p>
                                                 <p className="text-xs text-gray-500">{member.email}</p>
@@ -320,7 +320,7 @@ export default function SettingsPage() {
                                                 <select 
                                                     value={member.role}
                                                     onChange={(e) => handleRoleChange(member.id, e.target.value)}
-                                                    className="px-3 py-1.5 rounded bg-transparent border border-white/10 text-white text-xs hover:border-white/30 transition-colors focus:outline-none focus:border-violet-500"
+                                                    className="px-3 py-1.5 rounded bg-transparent border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-xs hover:border-white/30 transition-colors focus:outline-none focus:border-violet-500"
                                                 >
                                                     <option value="owner">Owner</option>
                                                     <option value="manager">Manager</option>
@@ -331,7 +331,7 @@ export default function SettingsPage() {
                                                 <span className={`text-xs px-2 py-1 rounded-full border capitalize font-medium ${
                                                     member.role === 'owner' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 
                                                     member.role === 'manager' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 
-                                                    'bg-gray-500/10 text-gray-400 border-gray-500/20'
+                                                    'bg-gray-500/10 text-gray-600 dark:text-gray-400 border-gray-500/20'
                                                 }`}>{member.role}</span>
                                             )}
 
@@ -351,10 +351,10 @@ export default function SettingsPage() {
                     {activeTab === 'notifications' && (
                         <div className="max-w-2xl space-y-6">
                             <div>
-                                <h2 className="text-base font-semibold text-white mb-1">Notification Preferences</h2>
+                                <h2 className="text-base font-semibold text-slate-900 dark:text-white mb-1">Notification Preferences</h2>
                                 <p className="text-sm text-gray-500">Control when and how you receive alerts. Full config in Sprint 10.</p>
                             </div>
-                            <div className="p-5 rounded-2xl border border-white/5 bg-white/[0.02] space-y-4">
+                            <div className="p-5 rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] space-y-4">
                                 {[
                                     { label: 'Campaign ROAS drops below threshold', sublabel: 'AI monitors every 6 hours', enabled: true },
                                     { label: 'Invoice overdue alert', sublabel: 'Daily at 9:00 AM', enabled: true },
@@ -364,13 +364,13 @@ export default function SettingsPage() {
                                 ].map((n, i) => (
                                     <div key={i} className="flex items-center justify-between">
                                         <div>
-                                            <p className="text-sm text-gray-300">{n.label}</p>
+                                            <p className="text-sm text-gray-700 dark:text-gray-300">{n.label}</p>
                                             <p className="text-xs text-gray-600">{n.sublabel}</p>
                                         </div>
                                         <button
-                                            className={`w-10 h-5 rounded-full transition-all relative ${n.enabled ? 'bg-violet-600' : 'bg-white/10'}`}
+                                            className={`w-10 h-5 rounded-full transition-all relative cursor-pointer ${n.enabled ? 'bg-violet-600' : 'bg-gray-200 dark:bg-white/10'}`}
                                         >
-                                            <div className={`w-3.5 h-3.5 rounded-full bg-white absolute top-0.5 transition-all ${n.enabled ? 'right-0.5' : 'left-0.5'}`} />
+                                            <div className={`w-3.5 h-3.5 rounded-full bg-white absolute top-0.5 transition-all shadow-sm ${n.enabled ? 'right-0.5' : 'left-0.5'}`} />
                                         </button>
                                     </div>
                                 ))}

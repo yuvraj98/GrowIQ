@@ -57,12 +57,12 @@ export default function DashboardPage() {
                     ].map((kpi) => (
                         <div
                             key={kpi.label}
-                            className="p-5 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all group cursor-pointer"
+                            className="p-5 rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] shadow-sm hover:shadow-xl hover:shadow-violet-500/10 hover:-translate-y-1 hover:border-violet-500/30 dark:hover:border-violet-500/30 transition-all duration-300 group cursor-pointer"
                         >
-                            <p className="text-sm text-gray-400 mb-1 group-hover:text-gray-300 transition-colors">{kpi.label}</p>
+                            <p className="text-sm text-gray-400 dark:text-gray-500 mb-1 group-hover:text-violet-500 transition-colors font-medium">{kpi.label}</p>
                             <div className="flex items-end justify-between">
-                                <span className="text-2xl font-bold text-white tracking-tight">{kpi.value}</span>
-                                <span className={`text-sm font-medium bg-gradient-to-r ${kpi.color} bg-clip-text text-transparent drop-shadow-sm`}>
+                                <span className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:scale-105 transition-transform duration-300 origin-left">{kpi.value}</span>
+                                <span className={`text-sm font-bold bg-gradient-to-r ${kpi.color} bg-clip-text text-transparent drop-shadow-sm`}>
                                     {kpi.change}
                                 </span>
                             </div>
@@ -73,8 +73,8 @@ export default function DashboardPage() {
                 {/* Health Score + Recent Insights */}
                 <div className="grid lg:grid-cols-3 gap-6">
                     {/* Health Score */}
-                    <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:bg-white/[0.03] transition-colors">
-                        <h3 className="text-sm font-medium text-gray-300 mb-4 tracking-tight">Agency Health Score</h3>
+                    <div className="rounded-2xl border border-gray-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] shadow-sm p-6 hover:shadow-md dark:hover:bg-white/[0.03] transition-all duration-300">
+                        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4 tracking-tight">Agency Health Score</h3>
                         <div className="flex items-center justify-center">
                             <div className="relative w-40 h-40 drop-shadow-xl">
                                 <svg className="w-40 h-40 -rotate-90" viewBox="0 0 120 120">
@@ -95,7 +95,7 @@ export default function DashboardPage() {
                                     </defs>
                                 </svg>
                                 <div className="absolute inset-0 flex items-center justify-center flex-col">
-                                    <span className="text-4xl font-extrabold text-white tracking-tighter">{metrics.healthScore}</span>
+                                    <span className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tighter">{metrics.healthScore}</span>
                                     <span className="text-xs text-gray-500 font-medium">out of 100</span>
                                 </div>
                             </div>
@@ -106,9 +106,9 @@ export default function DashboardPage() {
                     </div>
 
                     {/* Recent AI Insights */}
-                    <div className="lg:col-span-2 rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:bg-white/[0.03] transition-colors">
+                    <div className="lg:col-span-2 rounded-2xl border border-gray-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] shadow-sm p-6 hover:shadow-md dark:hover:bg-white/[0.03] transition-all duration-300">
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-sm font-medium text-gray-300 tracking-tight">Recent AI Insights</h3>
+                            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 tracking-tight">Recent AI Insights</h3>
                             <span className="text-xs font-medium text-violet-400 bg-violet-500/10 px-2 py-1 rounded-full border border-violet-500/20">
                                 ✨ Powered by Claude AI
                             </span>
@@ -118,17 +118,17 @@ export default function DashboardPage() {
                                 metrics.recentInsights.map((insight) => (
                                     <div
                                         key={insight.id}
-                                        className="flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.015] hover:bg-white/[0.04] transition-all cursor-pointer group"
+                                        className="flex items-center gap-4 p-4 rounded-xl border border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-white/[0.015] hover:bg-white dark:hover:bg-white/[0.04] hover:shadow-lg dark:hover:shadow-none transition-all cursor-pointer group"
                                         onClick={() => window.location.href = '/dashboard/insights'}
                                     >
                                         <div className={`w-2.5 h-2.5 rounded-full shadow-lg ${insight.severity === 'critical' || insight.severity === 'high' ? 'bg-orange-500 shadow-orange-500/50' :
                                             insight.severity === 'medium' ? 'bg-amber-500 shadow-amber-500/50' : 'bg-emerald-500 shadow-emerald-500/50'
                                             }`} />
                                         <div className="flex-1 min-w-0">
-                                            <p className="text-sm font-medium text-gray-200 truncate group-hover:text-white transition-colors">{insight.title}</p>
-                                            <p className="text-xs text-gray-500 mt-0.5 capitalize">{insight.type} <span className="text-gray-600 px-1">•</span> {new Date(insight.created_at).toLocaleDateString()}</p>
+                                            <p className="text-sm font-medium text-gray-700 dark:text-gray-200 truncate group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">{insight.title}</p>
+                                            <p className="text-xs text-gray-500 mt-0.5 capitalize">{insight.type} <span className="px-1">•</span> {new Date(insight.created_at).toLocaleDateString()}</p>
                                         </div>
-                                        <ChevronRight className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors" />
+                                        <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-violet-500 transition-colors" />
                                     </div>
                                 ))
                             ) : (
@@ -142,8 +142,8 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Sprint Progress */}
-                <div className="mt-8 rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-                    <h3 className="text-sm font-medium text-gray-300 mb-5 tracking-tight flex items-center gap-2">
+                <div className="mt-8 rounded-2xl border border-gray-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] shadow-sm p-6">
+                    <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-5 tracking-tight flex items-center gap-2">
                         <span className="text-lg">🚀</span> Development Progress
                     </h3>
                     <div className="grid grid-cols-4 md:grid-cols-8 gap-3">
@@ -157,7 +157,7 @@ export default function DashboardPage() {
                                         ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 shadow-sm shadow-emerald-500/5'
                                         : isCurrent
                                         ? 'bg-violet-500/20 border border-violet-500/50 text-violet-300 shadow-md shadow-violet-500/20 scale-105 z-10'
-                                        : 'bg-white/[0.02] border border-white/5 text-gray-600'
+                                        : 'bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/5 text-gray-600'
                                         }`}
                                 >
                                     <div className={`text-xs font-bold ${isCurrent ? 'text-violet-200' : ''}`}>S{i + 1}</div>

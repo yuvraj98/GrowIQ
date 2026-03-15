@@ -10,7 +10,7 @@ const logger = winston.createLogger({
         winston.format.errors({ stack: true }),
         winston.format.json()
     ),
-    defaultMeta: { service: 'growiq-api' },
+    defaultMeta: { service: 'dmtrack-api' },
     transports: [
         // Console output with colors
         new winston.transports.Console({

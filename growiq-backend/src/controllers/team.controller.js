@@ -31,7 +31,7 @@ class TeamController {
                 name, 
                 email, 
                 role, 
-                password || 'GrowIQ!123' // default mock password for dev
+                password || 'DMTrack!123' // default mock password for dev
             );
             
             res.json({ success: true, data: member, message: 'Team member added successfully' });

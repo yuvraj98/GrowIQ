@@ -97,13 +97,13 @@ export default function SEOTrackerPage() {
                         <select 
                             value={selectedClient} 
                             onChange={e => setSelectedClient(e.target.value)}
-                            className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                            className="px-4 py-2 rounded-lg bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                         >
                             {clients.map(c => <option key={c.id} value={c.id}>{c.business_name}</option>)}
                         </select>
                         <button 
                             onClick={() => setShowAddModal(true)}
-                            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-black text-sm font-semibold hover:bg-gray-200 transition-all"
+                            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-sm font-medium hover:from-violet-500 hover:to-indigo-500 shadow-lg shadow-violet-500/20 active:scale-[0.97] transition-all"
                         >
                             <Plus className="w-4 h-4" /> Add Keyword
                         </button>
@@ -114,47 +114,35 @@ export default function SEOTrackerPage() {
             <div className="flex-1 overflow-y-auto p-6 scrollbar-hide">
                 {/* Core Stats */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                    <div className="p-4 rounded-2xl border border-white/5 bg-white/[0.02] flex items-center justify-between">
-                        <div>
-                            <p className="text-xs text-gray-500 font-medium mb-1">Total Keywords</p>
-                            <p className="text-2xl font-bold text-white tracking-tight">{keywords.length}</p>
+                    {[
+                        { label: 'Total Keywords', value: keywords.length, icon: Hash, color: 'text-violet-500', bg: 'bg-violet-500/10' },
+                        { label: 'Top 3 Rankings', value: keywords.filter(k => k.current_position <= 3).length, icon: TrendingUp, color: 'text-amber-500', bg: 'bg-amber-500/10' },
+                        { label: 'Top 10 Rankings', value: keywords.filter(k => k.current_position <= 10).length, icon: Activity, color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
+                        { label: 'Visibility Score', value: '64%', icon: Globe, color: 'text-blue-500', bg: 'bg-blue-500/10' },
+                    ].map((stat, i) => (
+                        <div key={i} className="p-4 rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] shadow-sm hover:shadow-md transition-all flex items-center justify-between">
+                            <div>
+                                <p className="text-xs text-gray-500 font-medium mb-1">{stat.label}</p>
+                                <p className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{stat.value}</p>
+                            </div>
+                            <div className={`p-2.5 rounded-xl ${stat.bg} ${stat.color}`}>
+                                <stat.icon className="w-5 h-5" />
+                            </div>
                         </div>
-                        <div className="p-2.5 rounded-xl bg-violet-500/10 text-violet-400"><Hash className="w-5 h-5" /></div>
-                    </div>
-                    <div className="p-4 rounded-2xl border border-white/5 bg-white/[0.02] flex items-center justify-between">
-                        <div>
-                            <p className="text-xs text-gray-500 font-medium mb-1">Top 3 Rankings</p>
-                            <p className="text-2xl font-bold text-white tracking-tight">{keywords.filter(k => k.current_position <= 3).length}</p>
-                        </div>
-                        <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-500"><TrendingUp className="w-5 h-5" /></div>
-                    </div>
-                    <div className="p-4 rounded-2xl border border-white/5 bg-white/[0.02] flex items-center justify-between">
-                        <div>
-                            <p className="text-xs text-gray-500 font-medium mb-1">Top 10 Rankings</p>
-                            <p className="text-2xl font-bold text-white tracking-tight">{keywords.filter(k => k.current_position <= 10).length}</p>
-                        </div>
-                        <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400"><Activity className="w-5 h-5" /></div>
-                    </div>
-                    <div className="p-4 rounded-2xl border border-white/5 bg-white/[0.02] flex items-center justify-between">
-                        <div>
-                            <p className="text-xs text-gray-500 font-medium mb-1">Visibility Score</p>
-                            <p className="text-2xl font-bold text-white tracking-tight">64%</p>
-                        </div>
-                        <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400"><Globe className="w-5 h-5" /></div>
-                    </div>
+                    ))}
                 </div>
 
                 {/* Keyword List */}
-                <div className="rounded-2xl border border-white/5 bg-white/[0.01] overflow-hidden shadow-xl">
+                <div className="rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] overflow-hidden shadow-sm">
                     <table className="w-full text-left">
                         <thead>
-                            <tr className="bg-white/5 border-b border-white/10">
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-widest">Keyword / URL</th>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-widest text-center">Rank</th>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-widest text-center">Change</th>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-widest text-center">Volume</th>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-widest text-center">Difficulty</th>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-widest text-right">Actions</th>
+                            <tr className="bg-gray-50/80 dark:bg-white/[0.02] border-b border-gray-200 dark:border-white/5">
+                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest">Keyword / URL</th>
+                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest text-center">Rank</th>
+                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest text-center">Change</th>
+                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest text-center">Volume</th>
+                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest text-center">Difficulty</th>
+                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-white/5">
@@ -171,11 +159,11 @@ export default function SEOTrackerPage() {
                                     </td>
                                 </tr>
                             ) : keywords.map(kw => (
-                                <tr key={kw.id} className="hover:bg-white/[0.02] transition-colors group">
+                                <tr key={kw.id} className="hover:bg-gray-50 dark:hover:bg-white/[0.03] transition-colors group">
                                     <td className="px-6 py-4">
                                         <div>
-                                            <p className="text-sm font-semibold text-white tracking-tight">{kw.keyword}</p>
-                                            <div className="flex items-center gap-1.5 mt-1 text-gray-600 group-hover:text-gray-400 transition-colors">
+                                            <p className="text-sm font-semibold text-slate-900 dark:text-white tracking-tight">{kw.keyword}</p>
+                                            <div className="flex items-center gap-1.5 mt-1 text-gray-600 group-hover:text-gray-600 dark:text-gray-400 transition-colors">
                                                 <LinkIcon className="w-3 h-3" />
                                                 <span className="text-[10px] truncate max-w-[200px]">{kw.url || 'No URL specified'}</span>
                                             </div>
@@ -185,7 +173,7 @@ export default function SEOTrackerPage() {
                                         <div className={`inline-flex items-center justify-center w-8 h-8 rounded-lg font-bold text-xs ${
                                             kw.current_position <= 3 ? 'bg-amber-500/20 text-amber-500 border border-amber-500/20' :
                                             kw.current_position <= 10 ? 'bg-emerald-500/20 text-emerald-500 border border-emerald-500/20' :
-                                            'bg-white/5 text-gray-400 border border-white/10'
+                                            'bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10'
                                         }`}>
                                             {kw.current_position || '-'}
                                         </div>
@@ -193,12 +181,12 @@ export default function SEOTrackerPage() {
                                     <td className="px-6 py-4 text-center text-xs font-medium">
                                         {renderChange(kw.current_position, kw.previous_position)}
                                     </td>
-                                    <td className="px-6 py-4 text-center text-xs text-gray-400">
+                                    <td className="px-6 py-4 text-center text-xs text-gray-600 dark:text-gray-400">
                                         {kw.search_volume?.toLocaleString() || 'N/A'}
                                     </td>
                                     <td className="px-6 py-4 text-center">
                                         <div className="flex items-center justify-center gap-2">
-                                            <div className="w-16 h-1.5 rounded-full bg-white/5 overflow-hidden">
+                                            <div className="w-16 h-1.5 rounded-full bg-gray-100 dark:bg-white/5 overflow-hidden">
                                                 <div className={`h-full rounded-full ${kw.difficulty > 50 ? 'bg-red-500' : kw.difficulty > 30 ? 'bg-amber-500' : 'bg-emerald-500'}`} style={{ width: `${kw.difficulty}%` }} />
                                             </div>
                                             <span className="text-[10px] text-gray-500">{kw.difficulty}</span>
@@ -218,11 +206,11 @@ export default function SEOTrackerPage() {
 
             {/* Add Keyword Modal */}
             {showAddModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-                    <div className="w-full max-w-md bg-[#0F0F15] border border-white/10 rounded-3xl shadow-2xl overflow-hidden">
-                        <div className="flex items-center justify-between p-6 border-b border-white/5">
-                            <h2 className="text-lg font-bold text-white tracking-tight">Add Search Term</h2>
-                            <button onClick={() => setShowAddModal(false)} className="p-2 rounded-full hover:bg-white/5 transition-colors text-gray-500 hover:text-white"><X className="w-5 h-5" /></button>
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 dark:bg-black/70 backdrop-blur-md">
+                    <div className="w-full max-w-md bg-white dark:bg-gray-900 border border-gray-200 dark:border-white/10 rounded-3xl shadow-2xl overflow-hidden animate-fade-in-up">
+                        <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-white/5">
+                            <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Add Search Term</h2>
+                            <button onClick={() => setShowAddModal(false)} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500 hover:text-slate-900 dark:text-white"><X className="w-5 h-5" /></button>
                         </div>
                         <form onSubmit={handleAddKeyword} className="p-6 space-y-5">
                             <div className="space-y-1.5">
@@ -230,7 +218,7 @@ export default function SEOTrackerPage() {
                                 <input 
                                     required autoFocus placeholder="e.g. digital marketing services"
                                     value={formData.keyword} onChange={e => setFormData({...formData, keyword: e.target.value})}
-                                    className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
+                                    className="w-full px-4 py-3 rounded-2xl bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
                                 />
                             </div>
                             <div className="space-y-1.5">
@@ -238,13 +226,13 @@ export default function SEOTrackerPage() {
                                 <input 
                                     placeholder="https://client.com/services"
                                     value={formData.url} onChange={e => setFormData({...formData, url: e.target.value})}
-                                    className="w-full px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
+                                    className="w-full px-4 py-3 rounded-2xl bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
                                 />
                             </div>
                             <div className="pt-2">
                                 <button 
                                     type="submit" disabled={submitting}
-                                    className="w-full py-4 rounded-2xl bg-white text-black font-extrabold text-sm hover:bg-zinc-200 transition-all disabled:opacity-50"
+                                    className="w-full py-4 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold text-sm hover:from-violet-500 hover:to-indigo-500 shadow-lg shadow-violet-500/20 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {submitting ? 'Connecting...' : 'Start Tracking'}
                                 </button>

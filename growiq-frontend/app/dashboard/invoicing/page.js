@@ -15,7 +15,7 @@ const STATUS_STLYES = {
     paid: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
     pending: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
     overdue: 'bg-red-500/10 text-red-400 border-red-500/20',
-    draft: 'bg-gray-500/10 text-gray-400 border-gray-500/20',
+    draft: 'bg-gray-500/10 text-gray-600 dark:text-gray-400 border-gray-500/20',
 };
 
 export default function InvoicingPage() {
@@ -92,7 +92,7 @@ export default function InvoicingPage() {
                 actions={
                     <button 
                         onClick={() => setShowCreateModal(true)}
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-black text-sm font-semibold hover:bg-gray-200 transition-all"
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-sm font-medium hover:from-violet-500 hover:to-indigo-500 shadow-lg shadow-violet-500/20 hover:shadow-violet-500/30 active:scale-[0.97] transition-all"
                     >
                         <Plus className="w-4 h-4" /> Create Invoice
                     </button>
@@ -102,30 +102,30 @@ export default function InvoicingPage() {
             <div className="flex-1 overflow-y-auto p-6">
                 {/* Stats Summary */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02]">
+                    <div className="p-6 rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02]">
                         <div className="flex items-center gap-3 mb-4">
                             <Clock className="w-5 h-5 text-amber-400" />
-                            <span className="text-sm text-gray-400">Total Outstanding</span>
+                            <span className="text-sm text-gray-600 dark:text-gray-400">Total Outstanding</span>
                         </div>
-                        <div className="text-2xl font-bold text-white">
+                        <div className="text-2xl font-bold text-slate-900 dark:text-white">
                             {formatCurrency(invoices.filter(i => i.status !== 'paid').reduce((sum, i) => sum + parseFloat(i.total_amount), 0))}
                         </div>
                     </div>
-                    <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02]">
+                    <div className="p-6 rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02]">
                         <div className="flex items-center gap-3 mb-4">
                             <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                            <span className="text-sm text-gray-400">Total Collected</span>
+                            <span className="text-sm text-gray-600 dark:text-gray-400">Total Collected</span>
                         </div>
-                        <div className="text-2xl font-bold text-white">
+                        <div className="text-2xl font-bold text-slate-900 dark:text-white">
                             {formatCurrency(invoices.filter(i => i.status === 'paid').reduce((sum, i) => sum + parseFloat(i.total_amount), 0))}
                         </div>
                     </div>
-                    <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02]">
+                    <div className="p-6 rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02]">
                         <div className="flex items-center gap-3 mb-4">
                             <AlertCircle className="w-5 h-5 text-red-400" />
-                            <span className="text-sm text-gray-400">Overdue Invoices</span>
+                            <span className="text-sm text-gray-600 dark:text-gray-400">Overdue Invoices</span>
                         </div>
-                        <div className="text-2xl font-bold text-white">
+                        <div className="text-2xl font-bold text-slate-900 dark:text-white">
                             {invoices.filter(i => i.status === 'overdue').length}
                         </div>
                     </div>
@@ -133,11 +133,11 @@ export default function InvoicingPage() {
 
                 {/* Filters */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                    <div className="flex items-center gap-2 p-1 rounded-xl bg-white/5 border border-white/10 w-fit">
+                    <div className="flex items-center gap-2 p-1 rounded-xl bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 w-fit">
                         {['all', 'pending', 'paid', 'overdue'].map(s => (
                             <button 
                                 key={s} onClick={() => setFilter(s)}
-                                className={`px-4 py-1.5 rounded-lg text-xs font-medium capitalize transition-all ${filter === s ? 'bg-white/10 text-white' : 'text-gray-500 hover:text-white'}`}
+                                className={`px-4 py-1.5 rounded-lg text-xs font-medium capitalize transition-all ${filter === s ? 'bg-white/10 text-slate-900 dark:text-white' : 'text-gray-500 hover:text-slate-900 dark:text-white'}`}
                             >
                                 {s}
                             </button>
@@ -148,22 +148,22 @@ export default function InvoicingPage() {
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                         <input 
                             placeholder="Search invoice or client..." 
-                            className="pl-10 pr-4 py-2 rounded-xl bg-white/5 border border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50 w-64"
+                            className="pl-10 pr-4 py-2 rounded-xl bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50 w-64"
                         />
                     </div>
                 </div>
 
                 {/* Invoices Table */}
-                <div className="rounded-2xl border border-white/5 bg-white/[0.01] overflow-hidden">
+                <div className="rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] overflow-hidden shadow-sm">
                     <table className="w-full text-left">
                         <thead>
-                            <tr className="bg-white/5 border-b border-white/10">
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Invoice</th>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Client</th>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Due Date</th>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Amount</th>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Status</th>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider text-right">Actions</th>
+                            <tr className="bg-gray-50/80 dark:bg-white/[0.02] border-b border-gray-200 dark:border-white/5">
+                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Invoice</th>
+                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Client</th>
+                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Due Date</th>
+                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Amount</th>
+                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">Status</th>
+                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-white/5">
@@ -180,28 +180,28 @@ export default function InvoicingPage() {
                                     </td>
                                 </tr>
                             ) : invoices.map(invoice => (
-                                <tr key={invoice.id} className="hover:bg-white/[0.02] transition-colors group">
+                                <tr key={invoice.id} className="hover:bg-gray-50 dark:hover:bg-white/[0.03] transition-colors group">
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-3">
                                             <div className="p-2 rounded-lg bg-violet-500/10 text-violet-400">
                                                 <FileText className="w-4 h-4" />
                                             </div>
                                             <div>
-                                                <p className="text-sm font-medium text-white">{invoice.invoice_number}</p>
+                                                <p className="text-sm font-medium text-slate-900 dark:text-white">{invoice.invoice_number}</p>
                                                 <p className="text-[10px] text-gray-500 uppercase tracking-widest">{formatDate(invoice.created_at)}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <Link href={`/dashboard/clients/${invoice.client_id}`} className="text-sm text-gray-300 hover:text-white hover:underline transition-colors">
+                                        <Link href={`/dashboard/clients/${invoice.client_id}`} className="text-sm text-gray-700 dark:text-gray-300 hover:text-slate-900 dark:text-white hover:underline transition-colors">
                                             {invoice.client_name}
                                         </Link>
                                     </td>
-                                    <td className="px-6 py-4 text-sm text-gray-400">
+                                    <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
                                         {formatDate(invoice.due_date)}
                                     </td>
                                     <td className="px-6 py-4">
-                                        <p className="text-sm font-semibold text-white">{formatCurrency(invoice.total_amount)}</p>
+                                        <p className="text-sm font-semibold text-slate-900 dark:text-white">{formatCurrency(invoice.total_amount)}</p>
                                         <p className="text-[10px] text-gray-500">Incl. 18% GST</p>
                                     </td>
                                     <td className="px-6 py-4">
@@ -220,7 +220,7 @@ export default function InvoicingPage() {
                                                     <CheckCircle2 className="w-4 h-4" />
                                                 </button>
                                             )}
-                                            <button className="p-2 rounded-lg bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+                                            <button className="p-2 rounded-lg bg-gray-100 dark:bg-white/5 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 transition-all">
                                                 <Download className="w-4 h-4" />
                                             </button>
                                         </div>
@@ -234,53 +234,53 @@ export default function InvoicingPage() {
 
             {/* Create Invoice Modal */}
             {showCreateModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-                    <div className="w-full max-w-md bg-[#12121A] border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
-                        <div className="flex items-center justify-between p-6 border-b border-white/10">
-                            <h2 className="text-lg font-semibold text-white">New Manual Invoice</h2>
-                            <button onClick={() => setShowCreateModal(false)} className="text-gray-500 hover:text-white"><X className="w-5 h-5" /></button>
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/40 dark:bg-black/60 backdrop-blur-sm">
+                    <div className="w-full max-w-md bg-white dark:bg-gray-900 border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-fade-in-up">
+                        <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-white/5">
+                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">New Manual Invoice</h2>
+                            <button onClick={() => setShowCreateModal(false)} className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-all"><X className="w-5 h-5" /></button>
                         </div>
                         <form onSubmit={handleCreateInvoice} className="p-6 space-y-4">
                             <div className="space-y-1.5">
-                                <label className="text-xs font-semibold text-gray-400 uppercase">Select Client</label>
+                                <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase">Select Client</label>
                                 <select 
                                     required value={formData.clientId} 
                                     onChange={e => setFormData({...formData, clientId: e.target.value})}
-                                    className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                                    className="w-full px-4 py-2.5 rounded-xl bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                                 >
                                     <option value="">Choose a client...</option>
                                     {clients.map(c => <option key={c.id} value={c.id}>{c.business_name}</option>)}
                                 </select>
                             </div>
                             <div className="space-y-1.5">
-                                <label className="text-xs font-semibold text-gray-400 uppercase">Base Amount (₹)</label>
+                                <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase">Base Amount (₹)</label>
                                 <input 
                                     required type="number" placeholder="e.g. 50000"
                                     value={formData.amount} onChange={e => setFormData({...formData, amount: e.target.value})}
-                                    className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                                    className="w-full px-4 py-2.5 rounded-xl bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                                 />
                             </div>
                             <div className="space-y-1.5">
-                                <label className="text-xs font-semibold text-gray-400 uppercase">Due Date</label>
+                                <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase">Due Date</label>
                                 <input 
                                     type="date" 
                                     value={formData.dueDate} onChange={e => setFormData({...formData, dueDate: e.target.value})}
-                                    className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                                    className="w-full px-4 py-2.5 rounded-xl bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                                 />
                             </div>
                             <div className="space-y-1.5">
-                                <label className="text-xs font-semibold text-gray-400 uppercase">Notes (Optional)</label>
+                                <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase">Notes (Optional)</label>
                                 <textarea 
                                     placeholder="Brief description of services..."
                                     value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}
-                                    className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 min-h-[100px]"
+                                    className="w-full px-4 py-2.5 rounded-xl bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 min-h-[100px]"
                                 />
                             </div>
                             
                             <div className="pt-4">
                                 <button 
                                     type="submit" disabled={submitting}
-                                    className="w-full py-3 rounded-xl bg-white text-black font-bold text-sm hover:bg-gray-200 transition-all disabled:opacity-50"
+                                    className="w-full py-3 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold text-sm hover:from-violet-500 hover:to-indigo-500 shadow-lg shadow-violet-500/20 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {submitting ? 'Generating...' : 'Create & Send Invoice'}
                                 </button>

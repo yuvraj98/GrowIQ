@@ -1,4 +1,4 @@
-# 🚀 GrowIQ Backend API
+# 🚀 DMTrack Backend API
 
 > All-in-One Digital Marketing Business Platform
 
@@ -54,7 +54,7 @@ Base URL: `http://localhost:5000/api/v1`
 ### Project Structure
 
 ```
-growiq-backend/
+dmtrack-backend/
 ├── src/
 │   ├── config/          # Database, Redis, env config
 │   ├── middleware/       # Auth, rate limit, validation, errors

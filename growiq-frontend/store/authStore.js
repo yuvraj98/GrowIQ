@@ -20,16 +20,16 @@ const useAuthStore = create(
 
             login: (user, accessToken, refreshToken) => {
                 if (typeof window !== 'undefined') {
-                    localStorage.setItem('growiq_access_token', accessToken);
-                    localStorage.setItem('growiq_refresh_token', refreshToken);
+                    localStorage.setItem('dmtrack_access_token', accessToken);
+                    localStorage.setItem('dmtrack_refresh_token', refreshToken);
                 }
                 set({ user, isAuthenticated: true });
             },
 
             logout: () => {
                 if (typeof window !== 'undefined') {
-                    localStorage.removeItem('growiq_access_token');
-                    localStorage.removeItem('growiq_refresh_token');
+                    localStorage.removeItem('dmtrack_access_token');
+                    localStorage.removeItem('dmtrack_refresh_token');
                 }
                 set({ user: null, isAuthenticated: false });
             },
@@ -37,7 +37,7 @@ const useAuthStore = create(
             setLoading: (loading) => set({ isLoading: loading }),
         }),
         {
-            name: 'growiq-auth',
+            name: 'dmtrack-auth',
             partialize: (state) => ({
                 user: state.user,
                 isAuthenticated: state.isAuthenticated,

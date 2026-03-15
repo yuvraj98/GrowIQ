@@ -11,12 +11,15 @@ const GenerateReportsJob = require('./jobs/generateReports.job');
 
 // Start the server
 const server = app.listen(PORT, async () => {
-    await initializeDatabase();
-    AIAnalysisJob.init();
-    GenerateReportsJob.init();
-    logger.info(`
+    try {
+        console.log('🚀 Server started, initializing database...');
+        await initializeDatabase();
+        console.log('📊 Database initialized, setting up jobs...');
+        AIAnalysisJob.init();
+        GenerateReportsJob.init();
+        logger.info(`
   ╔═══════════════════════════════════════════════╗
-  ║           🚀 GrowIQ API Server                ║
+  ║           🚀 DMTrack API Server                ║
   ╠═══════════════════════════════════════════════╣
   ║  Status:      Running                         ║
   ║  Port:        ${PORT}                            ║
@@ -27,7 +30,11 @@ const server = app.listen(PORT, async () => {
   ║  Health:      http://localhost:${PORT}/health     ║
   ║  API Base:    http://localhost:${PORT}/api/v1     ║
   ╚═══════════════════════════════════════════════╝
-  `);
+        `);
+    } catch (error) {
+        console.error('FATAL STARTUP ERROR:', error);
+        process.exit(1);
+    }
 });
 
 // Graceful shutdown

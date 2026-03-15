@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: #ffffff;
@@ -19,8 +20,111 @@
   }
 }
 
+/* ─── Base ─────────────────────────────────────────────── */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Smooth theme transitions ─────────────────────────── */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Exclude transform/opacity so animations still work */
+a, button, input, select, textarea {
+  transition-property: background-color, border-color, box-shadow, color, opacity, transform;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Focus ring system ────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgb(139 92 246 / 0.5);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ─── Custom scrollbar ─────────────────────────────────── */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.15);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.3);
+}
+
+/* ─── Selection ────────────────────────────────────────── */
+::selection {
+  background: rgba(139, 92, 246, 0.2);
+  color: inherit;
+}
+
+/* ─── Animations ───────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.3s ease-out; }
+.animate-fade-in    { animation: fadeIn 0.2s ease-out; }
+.animate-slide-in   { animation: slideInRight 0.3s ease-out; }
+
+/* ─── Glass card ───────────────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+:where(.dark, .dark *) .glass-card {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ─── Button hover glow ────────────────────────────────── */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-glow:hover::after {
+  opacity: 1;
+}
+
+/* ─── Input dark mode fix ──────────────────────────────── */
+:where(.dark, .dark *) input[type="date"],
+:where(.dark, .dark *) input[type="datetime-local"] {
+  color-scheme: dark;
 }

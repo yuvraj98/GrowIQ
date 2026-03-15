@@ -1,24 +1,26 @@
 import Link from 'next/link';
 import { ArrowRight, BarChart3, Brain, FileText, Users, Zap, Shield } from 'lucide-react';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-950">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-950">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-gray-950/80 backdrop-blur-xl">
+      <nav className="fixed top-0 w-full z-50 border-b border-gray-200 dark:border-white/5 bg-slate-50/90 dark:bg-gray-950/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-md">
               <Zap className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-              GrowIQ
+            <span className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-400 bg-clip-text text-transparent tracking-tight">
+              DMTrack
             </span>
           </div>
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <Link
               href="/login"
-              className="text-sm text-gray-400 hover:text-white transition-colors"
+              className="text-sm text-gray-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
               Sign In
             </Link>
@@ -44,17 +46,17 @@ export default function Home() {
             Now Powered by Claude AI
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
-            <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 tracking-tight">
+            <span className="bg-gradient-to-r from-gray-900 via-gray-700 to-gray-800 dark:from-white dark:via-gray-200 dark:to-gray-400 bg-clip-text text-transparent">
               Your Digital Marketing
             </span>
             <br />
-            <span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 bg-clip-text text-transparent">
               Command Center
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
             Track campaigns across Meta & Google, manage clients, generate AI-powered insights,
             and automate invoicing — replacing 6+ tools with one intelligent platform.
           </p>
@@ -69,7 +71,7 @@ export default function Home() {
             </Link>
             <Link
               href="/login"
-              className="flex items-center gap-2 px-8 py-3.5 rounded-xl border border-white/10 text-gray-300 hover:bg-white/5 hover:border-white/20 transition-all"
+              className="flex items-center gap-2 px-8 py-3.5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:border-gray-300 dark:hover:border-white/20 dark:hover:text-white transition-all shadow-sm"
             >
               Sign In to Dashboard
             </Link>
@@ -78,7 +80,7 @@ export default function Home() {
       </section>
 
       {/* Stats */}
-      <section className="py-12 border-y border-white/5">
+      <section className="py-12 border-y border-gray-200 dark:border-white/5">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
             { value: '₹38K Cr', label: 'Digital Ad Market' },
@@ -87,7 +89,7 @@ export default function Home() {
             { value: '5x', label: 'Faster Reporting' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 bg-clip-text text-transparent">
                 {stat.value}
               </div>
               <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
@@ -100,8 +102,8 @@ export default function Home() {
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+              <span className="bg-gradient-to-r from-gray-900 to-gray-800 dark:from-white dark:to-gray-400 bg-clip-text text-transparent">
                 Everything Your Agency Needs
               </span>
             </h2>
@@ -151,13 +153,13 @@ export default function Home() {
             ].map((feature) => (
               <div
                 key={feature.title}
-                className="group relative p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/10 transition-all duration-300"
+                className="group relative p-6 rounded-3xl border border-gray-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] shadow-sm hover:shadow-xl hover:border-violet-500/20 dark:hover:bg-white/[0.04] transition-all duration-300"
               >
-                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 shadow-lg`}>
-                  <feature.icon className="w-5 h-5 text-white" />
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-5 shadow-lg shadow-violet-500/20`}>
+                  <feature.icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{feature.desc}</p>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">{feature.title}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{feature.desc}</p>
               </div>
             ))}
           </div>
@@ -165,11 +167,11 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section className="py-20 px-6 border-t border-white/5">
+      <section className="py-20 px-6 border-t border-gray-200 dark:border-white/5">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+              <span className="bg-gradient-to-r from-gray-900 to-gray-800 dark:from-white dark:to-gray-400 bg-clip-text text-transparent">
                 Simple, Transparent Pricing
               </span>
             </h2>
@@ -202,9 +204,9 @@ export default function Home() {
             ].map((plan) => (
               <div
                 key={plan.name}
-                className={`relative p-6 rounded-2xl border ${plan.popular
-                    ? 'border-violet-500/30 bg-violet-500/5 shadow-xl shadow-violet-500/10'
-                    : 'border-white/5 bg-white/[0.02]'
+                className={`relative p-8 rounded-3xl border transition-all duration-300 hover:shadow-2xl ${plan.popular
+                    ? 'border-violet-500/30 bg-white dark:bg-white/[0.02] shadow-xl shadow-violet-500/10 ring-1 ring-violet-500/20'
+                    : 'border-gray-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] shadow-sm'
                   }`}
               >
                 {plan.popular && (
@@ -212,15 +214,15 @@ export default function Home() {
                     Most Popular
                   </div>
                 )}
-                <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{plan.name}</h3>
                 <p className="text-sm text-gray-500 mt-1">{plan.target}</p>
                 <div className="mt-4 mb-6">
-                  <span className="text-4xl font-bold text-white">₹{plan.price}</span>
+                  <span className="text-4xl font-bold text-slate-900 dark:text-white">₹{plan.price}</span>
                   <span className="text-gray-500">/month</span>
                 </div>
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-gray-300">
+                    <li key={f} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                       <span className="w-1.5 h-1.5 rounded-full bg-violet-500" />
                       {f}
                     </li>
@@ -230,7 +232,7 @@ export default function Home() {
                   href="/register"
                   className={`block text-center py-2.5 rounded-lg text-sm font-medium transition-all ${plan.popular
                       ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:from-violet-500 hover:to-indigo-500 shadow-lg shadow-violet-500/20'
-                      : 'border border-white/10 text-gray-300 hover:bg-white/5'
+                      : 'border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5'
                     }`}
                 >
                   Get Started
@@ -242,13 +244,13 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 border-t border-white/5">
+      <footer className="py-8 px-6 border-t border-gray-200 dark:border-white/5">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-md">
               <Zap className="w-4 h-4 text-white" />
             </div>
-            <span className="text-sm text-gray-500">GrowIQ · Version 1.0 · 2026</span>
+            <span className="text-sm text-gray-500">DMTrack · Version 1.0 · 2026</span>
           </div>
           <p className="text-sm text-gray-600">
             Built with Next.js, Express, PostgreSQL & Claude AI

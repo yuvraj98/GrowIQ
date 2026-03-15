@@ -125,7 +125,8 @@ const initializeDatabase = async () => {
                 data JSONB,
                 is_actioned BOOLEAN DEFAULT false,
                 is_dismissed BOOLEAN DEFAULT false,
-                created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+                created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
             );
 
             CREATE INDEX IF NOT EXISTS idx_insights_client ON ai_insights(client_id);
@@ -176,7 +177,8 @@ const initializeDatabase = async () => {
                 ai_summary TEXT,
                 status VARCHAR(20) DEFAULT 'generated' CHECK (status IN ('generating', 'generated', 'sent', 'failed')),
                 sent_at TIMESTAMP WITH TIME ZONE,
-                created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+                created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
             );
 
             -- ─── SEO ────────────────────────────────────────────────
@@ -230,7 +232,8 @@ const initializeDatabase = async () => {
                 type VARCHAR(50) DEFAULT 'info' CHECK (type IN ('info', 'warning', 'error', 'success')),
                 is_read BOOLEAN DEFAULT false,
                 link VARCHAR(500),
-                created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+                created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
             );
 
             CREATE INDEX IF NOT EXISTS idx_notifications_user ON notifications(user_id);

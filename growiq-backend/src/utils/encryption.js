@@ -6,7 +6,7 @@ const ALGORITHM = 'aes-256-gcm';
 // Derive a 32-byte key from JWT_SECRET (dev-safe, use a dedicated key in prod)
 const KEY = crypto
     .createHash('sha256')
-    .update(process.env.JWT_SECRET || 'growiq-dev-secret-change-in-production')
+    .update(process.env.JWT_SECRET || 'dmtrack-dev-secret-change-in-production')
     .digest();
 
 function encrypt(text) {

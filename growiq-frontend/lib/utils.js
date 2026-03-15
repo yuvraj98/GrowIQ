@@ -60,6 +60,15 @@ export function formatRelativeDate(dateString) {
 }
 
 /**
+ * Format date to standard string
+ */
+export function formatDate(dateString) {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+/**
  * Get health score color and label
  */
 export function getHealthScoreInfo(score) {

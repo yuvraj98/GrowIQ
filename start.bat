@@ -1,5 +1,5 @@
 @echo off
-echo Starting GrowIQ Servers...
+echo Starting DMTrack Servers...
 
 echo Make sure you have opened http://localhost:3000 in your browser.
 echo Press Ctrl+C in this window when you want to stop the servers.

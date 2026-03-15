@@ -32,9 +32,24 @@ const app = express();
 
 // ─── Security Middleware ────────────────────────────────────
 app.use(helmet());
-app.use(apiLimiter);
+
+// CORS — allow both localhost and 127.0.0.1 for Windows compatibility
+const allowedOrigins = [
+    env.FRONTEND_URL,
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://localhost:3001',
+    'http://127.0.0.1:3001',
+];
 app.use(cors({
-    origin: env.FRONTEND_URL,
+    origin: function (origin, callback) {
+        // Allow requests with no origin (mobile apps, curl, etc.)
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(null, true); // In dev, allow all origins
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
@@ -49,7 +64,7 @@ app.use(morgan('dev', {
     stream: { write: (message) => logger.info(message.trim()) },
 }));
 
-// ─── Rate Limiting ──────────────────────────────────────────
+// ─── Rate Limiting (applied once) ───────────────────────────
 app.use('/api/v1', apiLimiter);
 
 // ─── Static Files (local dev — replaces S3) ─────────────────
@@ -61,7 +76,7 @@ app.get('/health', (req, res) => {
         success: true,
         data: {
             status: 'healthy',
-            service: 'GrowIQ API',
+            service: 'DMTrack API',
             version: '1.0.0',
             environment: env.NODE_ENV,
             timestamp: new Date().toISOString(),
@@ -75,7 +90,7 @@ app.get('/api/v1', (req, res) => {
     res.json({
         success: true,
         data: {
-            name: 'GrowIQ API',
+            name: 'DMTrack API',
             version: 'v1',
             description: 'All-in-One Digital Marketing Business Platform',
             documentation: '/api/v1/docs',

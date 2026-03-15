@@ -1,7 +1,7 @@
 {
-  "name": "growiq-backend",
+  "name": "dmtrack-backend",
   "version": "1.0.0",
-  "description": "GrowIQ — All-in-One Digital Marketing Business Platform API",
+  "description": "DMTrack — All-in-One Digital Marketing Business Platform API",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
@@ -12,12 +12,12 @@
     "prepare": "husky"
   },
   "keywords": [
-    "growiq",
+    "dmtrack",
     "digital-marketing",
     "saas",
     "api"
   ],
-  "author": "GrowIQ",
+  "author": "DMTrack",
   "license": "UNLICENSED",
   "dependencies": {
     "axios": "^1.13.6",

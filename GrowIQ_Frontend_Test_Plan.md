@@ -1,6 +1,6 @@
-# GrowIQ Frontend Test Plan (Sprints 1–7)
+# DMTrack Frontend Test Plan (Sprints 1–7)
 
-Welcome to the **GrowIQ Manual Testing Guide**. This document helps you quickly navigate and test all the functional components built during Sprints 1 through 7 before we move on to Sprint 8 (AI Engine Setup).
+Welcome to the **DMTrack Manual Testing Guide**. This document helps you quickly navigate and test all the functional components built during Sprints 1 through 7 before we move on to Sprint 8 (AI Engine Setup).
 
 ---
 

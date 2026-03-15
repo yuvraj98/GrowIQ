@@ -1,6 +1,6 @@
-# 🚀 GrowIQ - Digital Marketing Business Platform
+# 🚀 DMTrack - Digital Marketing Business Platform
 
-GrowIQ is a comprehensive, all-in-one platform designed for digital marketing agencies to manage clients, automate ad campaign monitoring, generate AI-driven insights, and handle professional billing—all in one high-premium dashboard.
+DMTrack is a comprehensive, all-in-one platform designed for digital marketing agencies to manage clients, automate ad campaign monitoring, generate AI-driven insights, and handle professional billing—all in one high-premium dashboard.
 
 ## 🛠️ Tech Stack
 
@@ -34,7 +34,7 @@ GrowIQ is a comprehensive, all-in-one platform designed for digital marketing ag
 
 ### 2. Backend Setup
 ```bash
-cd growiq-backend
+cd dmtrack-backend
 npm install
 # Configure your .env (DATABASE_URL, JWT_SECRET, etc.)
 npm start
@@ -42,7 +42,7 @@ npm start
 
 ### 3. Frontend Setup
 ```bash
-cd growiq-frontend
+cd dmtrack-frontend
 npm install
 npm run dev
 ```
@@ -62,4 +62,4 @@ All **16 Sprints** are successfully implemented, tested, and secured.
 - [x] **Sprint 16:** Security Hardening & Rate Limiting
 
 ---
-*GrowIQ is now Production-Ready.*
+*DMTrack is now Production-Ready.*

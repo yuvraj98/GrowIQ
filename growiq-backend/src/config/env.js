@@ -13,9 +13,9 @@ const env = {
   // Database (PostgreSQL)
   DB_HOST: process.env.DB_HOST || 'localhost',
   DB_PORT: parseInt(process.env.DB_PORT, 10) || 5432,
-  DB_NAME: process.env.DB_NAME || 'growiq_development',
-  DB_USER: process.env.DB_USER || 'growiq',
-  DB_PASSWORD: process.env.DB_PASSWORD || 'growiq_dev_2026',
+  DB_NAME: process.env.DB_NAME || 'dmtrack_development',
+  DB_USER: process.env.DB_USER || 'dmtrack',
+  DB_PASSWORD: process.env.DB_PASSWORD || 'dmtrack_dev_2026',
   
   // Redis
   REDIS_HOST: process.env.REDIS_HOST || 'localhost',
@@ -23,9 +23,9 @@ const env = {
   REDIS_PASSWORD: process.env.REDIS_PASSWORD || '',
   
   // JWT
-  JWT_SECRET: process.env.JWT_SECRET || 'growiq-dev-secret-change-in-production',
+  JWT_SECRET: process.env.JWT_SECRET || 'dmtrack-dev-secret-change-in-production',
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '15m',
-  JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET || 'growiq-refresh-secret-change-in-production',
+  JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET || 'dmtrack-refresh-secret-change-in-production',
   JWT_REFRESH_EXPIRES_IN: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
   
   // AI Service
@@ -43,14 +43,14 @@ const env = {
   // Email
   EMAIL_SERVICE: process.env.EMAIL_SERVICE || 'ethereal', // 'ethereal' or 'sendgrid'
   SENDGRID_API_KEY: process.env.SENDGRID_API_KEY || '',
-  EMAIL_FROM: process.env.EMAIL_FROM || 'noreply@growiq.in',
+  EMAIL_FROM: process.env.EMAIL_FROM || 'noreply@dmtrack.in',
   
   // File Storage
   USE_S3: process.env.USE_S3 === 'true',
   AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID || '',
   AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY || '',
   AWS_REGION: process.env.AWS_REGION || 'ap-south-1',
-  AWS_S3_BUCKET: process.env.AWS_S3_BUCKET || 'growiq-files',
+  AWS_S3_BUCKET: process.env.AWS_S3_BUCKET || 'dmtrack-files',
   
   // Frontend URL
   FRONTEND_URL: process.env.FRONTEND_URL || 'http://localhost:3000',

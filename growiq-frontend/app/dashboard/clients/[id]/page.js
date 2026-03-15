@@ -142,7 +142,7 @@ export default function ClientDetailPage() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+            <div className="min-h-screen bg-slate-50 dark:bg-gray-950 flex items-center justify-center">
                 <div className="w-8 h-8 border-4 border-violet-500/30 border-t-violet-500 rounded-full animate-spin" />
             </div>
         );
@@ -150,10 +150,10 @@ export default function ClientDetailPage() {
 
     if (!client) {
         return (
-            <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+            <div className="min-h-screen bg-slate-50 dark:bg-gray-950 flex items-center justify-center">
                 <div className="text-center">
                     <Building2 className="w-12 h-12 text-gray-700 mx-auto mb-4" />
-                    <p className="text-gray-400">Client not found</p>
+                    <p className="text-gray-600 dark:text-gray-400">Client not found</p>
                     <Link href="/dashboard/clients" className="text-violet-400 text-sm mt-2 inline-block hover:underline">
                         ← Back to Clients
                     </Link>
@@ -174,7 +174,7 @@ export default function ClientDetailPage() {
                     <>
                         <button
                             onClick={() => setEditing(!editing)}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 text-sm text-gray-400 hover:bg-white/5 transition-all"
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-white/10 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 transition-all"
                         >
                             <Edit2 className="w-3.5 h-3.5" />
                             {editing ? 'Cancel' : 'Edit'}
@@ -195,33 +195,33 @@ export default function ClientDetailPage() {
             <div className="p-6 max-w-7xl mx-auto">
                 {/* Client Summary Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                    <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+                    <div className="rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] p-5">
                         <p className="text-xs text-gray-500 mb-1">Status</p>
                         <span className={`text-sm px-3 py-1 rounded-full border capitalize ${STATUS_STYLES[client.status]}`}>
                             {client.status}
                         </span>
                     </div>
-                    <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+                    <div className="rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] p-5">
                         <p className="text-xs text-gray-500 mb-1">Health Score</p>
                         <div className="flex items-center gap-2">
                             <span className={`text-2xl font-bold ${health.text}`}>{client.health_score}</span>
                             <span className={`text-xs ${health.text}`}>{health.label}</span>
                         </div>
                     </div>
-                    <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+                    <div className="rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] p-5">
                         <p className="text-xs text-gray-500 mb-1">Monthly Retainer</p>
-                        <span className="text-2xl font-bold text-white">
+                        <span className="text-2xl font-bold text-slate-900 dark:text-white">
                             ₹{Number(client.monthly_retainer).toLocaleString('en-IN')}
                         </span>
                     </div>
-                    <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+                    <div className="rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] p-5">
                         <p className="text-xs text-gray-500 mb-1">Active Campaigns</p>
-                        <span className="text-2xl font-bold text-white">{client.campaign_count || 0}</span>
+                        <span className="text-2xl font-bold text-slate-900 dark:text-white">{client.campaign_count || 0}</span>
                     </div>
                 </div>
 
                 {/* Tabs */}
-                <div className="flex gap-1 border-b border-white/5 mb-6">
+                <div className="flex gap-1 border-b border-gray-200 dark:border-white/5 mb-6">
                     {TABS.map((tab) => (
                         <button
                             key={tab.id}
@@ -229,7 +229,7 @@ export default function ClientDetailPage() {
                             className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-all ${
                                 activeTab === tab.id
                                     ? 'border-violet-500 text-violet-400'
-                                    : 'border-transparent text-gray-500 hover:text-gray-300'
+                                    : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-300'
                             }`}
                         >
                             <tab.icon className="w-4 h-4" />
@@ -243,20 +243,20 @@ export default function ClientDetailPage() {
                 {activeTab === 'overview' && (
                     <div className="grid lg:grid-cols-2 gap-6">
                         {/* Contact Info */}
-                        <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-                            <h3 className="text-sm font-medium text-gray-400 mb-4">Contact Information</h3>
+                        <div className="rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] p-6">
+                            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">Contact Information</h3>
                             {editing ? (
                                 <div className="space-y-3">
                                     <input value={editForm.contact_name || ''} onChange={(e) => setEditForm({...editForm, contact_name: e.target.value})}
-                                        className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" placeholder="Contact Name" />
+                                        className="w-full px-3 py-2 rounded-lg bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" placeholder="Contact Name" />
                                     <input value={editForm.contact_email || ''} onChange={(e) => setEditForm({...editForm, contact_email: e.target.value})}
-                                        className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" placeholder="Email" />
+                                        className="w-full px-3 py-2 rounded-lg bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" placeholder="Email" />
                                     <input value={editForm.contact_phone || ''} onChange={(e) => setEditForm({...editForm, contact_phone: e.target.value})}
-                                        className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" placeholder="Phone" />
+                                        className="w-full px-3 py-2 rounded-lg bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" placeholder="Phone" />
                                     <input value={editForm.website || ''} onChange={(e) => setEditForm({...editForm, website: e.target.value})}
-                                        className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" placeholder="Website" />
+                                        className="w-full px-3 py-2 rounded-lg bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/50" placeholder="Website" />
                                     <button onClick={handleUpdate}
-                                        className="w-full py-2 rounded-lg bg-violet-600 text-white text-sm font-medium hover:bg-violet-500 transition-all">
+                                        className="w-full py-2 rounded-lg bg-violet-600 text-slate-900 dark:text-white text-sm font-medium hover:bg-violet-500 transition-all">
                                         Save Changes
                                     </button>
                                 </div>
@@ -264,15 +264,15 @@ export default function ClientDetailPage() {
                                 <div className="space-y-3">
                                     <div className="flex items-center gap-3 text-sm">
                                         <Users className="w-4 h-4 text-gray-500" />
-                                        <span className="text-gray-300">{client.contact_name || 'Not set'}</span>
+                                        <span className="text-gray-700 dark:text-gray-300">{client.contact_name || 'Not set'}</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-sm">
                                         <Mail className="w-4 h-4 text-gray-500" />
-                                        <span className="text-gray-300">{client.contact_email || 'Not set'}</span>
+                                        <span className="text-gray-700 dark:text-gray-300">{client.contact_email || 'Not set'}</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-sm">
                                         <Phone className="w-4 h-4 text-gray-500" />
-                                        <span className="text-gray-300">{client.contact_phone || 'Not set'}</span>
+                                        <span className="text-gray-700 dark:text-gray-300">{client.contact_phone || 'Not set'}</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-sm">
                                         <Globe className="w-4 h-4 text-gray-500" />
@@ -281,7 +281,7 @@ export default function ClientDetailPage() {
                                                 {client.website} <ExternalLink className="w-3 h-3" />
                                             </a>
                                         ) : (
-                                            <span className="text-gray-300">Not set</span>
+                                            <span className="text-gray-700 dark:text-gray-300">Not set</span>
                                         )}
                                     </div>
                                 </div>
@@ -289,24 +289,24 @@ export default function ClientDetailPage() {
                         </div>
 
                         {/* Business Details */}
-                        <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-                            <h3 className="text-sm font-medium text-gray-400 mb-4">Business Details</h3>
+                        <div className="rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] p-6">
+                            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">Business Details</h3>
                             <div className="space-y-3">
                                 <div className="flex items-center justify-between text-sm">
                                     <span className="text-gray-500">Industry</span>
-                                    <span className="text-gray-300">{client.industry || 'Not set'}</span>
+                                    <span className="text-gray-700 dark:text-gray-300">{client.industry || 'Not set'}</span>
                                 </div>
                                 <div className="flex items-center justify-between text-sm">
                                     <span className="text-gray-500">Plan</span>
-                                    <span className="text-white capitalize font-medium">{client.plan}</span>
+                                    <span className="text-slate-900 dark:text-white capitalize font-medium">{client.plan}</span>
                                 </div>
                                 <div className="flex items-center justify-between text-sm">
                                     <span className="text-gray-500">GST Number</span>
-                                    <span className="text-gray-300 font-mono text-xs">{client.gst_number || 'Not set'}</span>
+                                    <span className="text-gray-700 dark:text-gray-300 font-mono text-xs">{client.gst_number || 'Not set'}</span>
                                 </div>
                                 <div className="flex items-center justify-between text-sm">
                                     <span className="text-gray-500">Contract Period</span>
-                                    <span className="text-gray-300">
+                                    <span className="text-gray-700 dark:text-gray-300">
                                         {client.contract_start ? new Date(client.contract_start).toLocaleDateString('en-IN') : '?'} — {client.contract_end ? new Date(client.contract_end).toLocaleDateString('en-IN') : '?'}
                                     </span>
                                 </div>
@@ -321,9 +321,9 @@ export default function ClientDetailPage() {
 
                         {/* Notes */}
                         {client.notes && (
-                            <div className="lg:col-span-2 rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-                                <h3 className="text-sm font-medium text-gray-400 mb-2">Notes</h3>
-                                <p className="text-sm text-gray-300 whitespace-pre-wrap">{client.notes}</p>
+                            <div className="lg:col-span-2 rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] p-6">
+                                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Notes</h3>
+                                <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{client.notes}</p>
                             </div>
                         )}
                     </div>
@@ -339,7 +339,7 @@ export default function ClientDetailPage() {
                     <div className="space-y-4">
                         <div className="flex items-center justify-between">
                             <div>
-                                <h3 className="text-sm font-semibold text-white">Platform Integrations</h3>
+                                <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Platform Integrations</h3>
                                 <p className="text-xs text-gray-500 mt-0.5">Connect ad platforms to track campaign metrics automatically.</p>
                             </div>
                             <span className="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-full">
@@ -353,7 +353,7 @@ export default function ClientDetailPage() {
                                 const isConnecting = connecting === key;
                                 return (
                                     <div key={key} className={`rounded-2xl border p-5 transition-all ${
-                                        isConnected ? 'border-emerald-500/20 bg-emerald-500/5' : 'border-white/5 bg-white/[0.02]'
+                                        isConnected ? 'border-emerald-500/20 bg-emerald-500/5' : 'border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02]'
                                     }`}>
                                         <div className="flex items-start justify-between mb-3">
                                             <div className="flex items-center gap-3">
@@ -361,7 +361,7 @@ export default function ClientDetailPage() {
                                                     {info.icon}
                                                 </div>
                                                 <div>
-                                                    <p className="text-sm font-medium text-white">{info.label}</p>
+                                                    <p className="text-sm font-medium text-slate-900 dark:text-white">{info.label}</p>
                                                     {integration?.account_id && (
                                                         <p className="text-[10px] text-gray-500 font-mono">{integration.account_id}</p>
                                                     )}
@@ -405,7 +405,7 @@ export default function ClientDetailPage() {
                 {(activeTab === 'invoices' || activeTab === 'reports') && (
                     <div className="text-center py-20">
                         <BarChart3 className="w-12 h-12 text-gray-700 mx-auto mb-4" />
-                        <h3 className="text-lg font-medium text-white mb-2">
+                        <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
                             {TABS.find(t => t.id === activeTab)?.label} — Coming Soon
                         </h3>
                         <p className="text-sm text-gray-500">
@@ -433,7 +433,7 @@ function CampaignsTab({ clientId, clientName }) {
         active:    'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
         paused:    'bg-amber-500/10 text-amber-400 border-amber-500/20',
         completed: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-        draft:     'bg-gray-500/10 text-gray-400 border-gray-500/20',
+        draft:     'bg-gray-500/10 text-gray-600 dark:text-gray-400 border-gray-500/20',
     };
     const PLAT = {
         meta:       { label: 'Meta',   icon: '𝓜', color: 'text-blue-400',    bg: 'bg-blue-500/10' },
@@ -445,7 +445,7 @@ function CampaignsTab({ clientId, clientName }) {
     if (!campaigns.length) return (
         <div className="text-center py-16">
             <BarChart3 className="w-10 h-10 text-gray-700 mx-auto mb-3" />
-            <p className="text-gray-400 text-sm">No campaigns for {clientName} yet.</p>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">No campaigns for {clientName} yet.</p>
             <a href="/dashboard/campaigns" className="text-violet-400 text-xs mt-1 inline-block hover:underline">Go to Campaigns →</a>
         </div>
     );
@@ -457,19 +457,19 @@ function CampaignsTab({ clientId, clientName }) {
                 const roas = parseFloat(c.avg_roas || 0);
                 return (
                     <a key={c.id} href={`/dashboard/campaigns/${c.id}`}
-                        className="flex items-center gap-4 p-4 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 transition-all group">
+                        className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-violet-500/20 dark:hover:border-white/10 transition-all duration-200 group">
                         <div className={`w-9 h-9 rounded-lg ${plat.bg} flex items-center justify-center text-sm font-bold ${plat.color} shrink-0`}>
                             {plat.icon}
                         </div>
                         <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-white truncate group-hover:text-violet-400 transition-colors">{c.name}</p>
+                            <p className="text-sm font-medium text-slate-900 dark:text-white truncate group-hover:text-violet-400 transition-colors">{c.name}</p>
                             <div className="flex items-center gap-2 mt-0.5">
                                 <span className={`text-[10px] px-1.5 py-0.5 rounded-full border capitalize ${STATUS_STYLES[c.status]}`}>{c.status}</span>
                                 <span className="text-[10px] text-gray-500">{plat.label}</span>
                             </div>
                         </div>
                         <div className="text-right shrink-0">
-                            <p className={`text-sm font-semibold ${roas >= 3 ? 'text-emerald-400' : roas >= 1.5 ? 'text-amber-400' : 'text-gray-400'}`}>{roas.toFixed(2)}x ROAS</p>
+                            <p className={`text-sm font-semibold ${roas >= 3 ? 'text-emerald-400' : roas >= 1.5 ? 'text-amber-400' : 'text-gray-600 dark:text-gray-400'}`}>{roas.toFixed(2)}x ROAS</p>
                             <p className="text-xs text-gray-500">₹{Number(c.total_spend || 0).toLocaleString('en-IN')} spend</p>
                         </div>
                     </a>

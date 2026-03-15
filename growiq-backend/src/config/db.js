@@ -4,7 +4,7 @@ const { Pool } = require('pg');
 const env = require('./env');
 const logger = require('../utils/logger');
 
-const pool = new Pool({
+const poolConfig = {
     host: env.DB_HOST,
     port: env.DB_PORT,
     database: env.DB_NAME,
@@ -13,7 +13,14 @@ const pool = new Pool({
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,
-});
+};
+
+// Required for cloud databases like Supabase or Neon to prevent connection drops in production environments
+if (env.DB_HOST && env.DB_HOST.includes('supabase.co') || env.NODE_ENV === 'production') {
+    poolConfig.ssl = { rejectUnauthorized: false };
+}
+
+const pool = new Pool(poolConfig);
 
 // Test connection on startup
 pool.on('connect', () => {
